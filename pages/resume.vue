@@ -1,0 +1,283 @@
+<template>
+  <div class="center">
+    <div class="container">
+      <header>
+        <h1>charlie thomson</h1>
+        <div class="info">
+          <div class="left">
+            <a href="mailto:charlie@thmsn.dev">charlie@thmsn.dev</a>
+            <a href="tel:5402292296">(540) 229-2296</a>
+          </div>
+          <div class="sep"></div>
+          <div class="right">
+            <a href="https://thmsn.dev">thmsn.dev</a>
+            <a href="https://www.github.com/charliethomson">
+              github/charliethomson
+            </a>
+          </div>
+        </div>
+      </header>
+      <section class="skills" role="list">
+        <div
+          class="skill"
+          v-for="{ id, name, items } in skills"
+          :key="id"
+          role="listitem"
+        >
+          <h3>{{ name }}</h3>
+          <ul role="list">
+            <li v-for="{ id, item } in items" :key="id" role="listitem">
+              {{ item }}
+            </li>
+          </ul>
+        </div>
+      </section>
+      <div class="body">
+        <section class="expertise" role="list">
+          <h2>expertise</h2>
+          <div
+            v-for="{ name, id, items } in expertise"
+            :key="id"
+            role="listitem"
+          >
+            <h3>{{ name }}</h3>
+            <p v-for="{ item, id } in items" :key="id" role="listitem">
+              {{ item }}
+            </p>
+          </div>
+        </section>
+        <section class="projects" role="list">
+          <h2>projects</h2>
+          <div
+            v-for="{ id, url, name, tools, description } in projects"
+            :key="id"
+            role="listitem"
+          >
+            <a class="title" :href="url">
+              <h3>{{ name }}</h3>
+            </a>
+            <div class="tools" role="list">
+              <p v-for="{ id, tool } in tools" :key="id" role="listitem">
+                {{ tool }}
+              </p>
+            </div>
+            <p class="description">{{ description }}</p>
+          </div>
+        </section>
+        <section class="work" role="list">
+          <h2>employment</h2>
+          <div
+            v-for="{ id, company: { name, link }, position, dates } in work"
+            :key="id"
+            role="listitem"
+          >
+            <a class="company" :href="link">
+              <h3>{{ name }}</h3>
+            </a>
+            <p class="position">{{ position }}</p>
+            <p class="dates">{{ dates }}</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import { resume } from '@/data/resume'
+import { v4 as uuidv4 } from 'uuid'
+export default {
+  setup: () => ({
+    skills: resume.skills.map(({ name, items }) => ({
+      name,
+      items: items.map((_) => ({ item: _, id: uuidv4() })),
+      id: uuidv4(),
+    })),
+    expertise: resume.expertise.map(({ name, items }) => ({
+      name,
+      items: items.map((_) => ({ item: _, id: uuidv4() })),
+      id: uuidv4(),
+    })),
+    projects: resume.projects.map((_) => ({
+      ..._,
+      tools: _.tools.map((_) => ({ tool: _, id: uuidv4() })),
+      id: uuidv4(),
+    })),
+    work: resume.work.map((_) => ({ ..._, id: uuidv4() })),
+  }),
+}
+</script>
+
+<style lang="scss" scoped>
+.center {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  .container {
+    color: var(--text);
+    background-color: var(--body-bg);
+    padding: 0 2rem;
+    height: 11in;
+    width: calc(8.5in - 2rem);
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    section h2 {
+      text-align: center;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+
+      h1 {
+        font-family: 'Noto Serif', serif;
+        font-weight: 800;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        div {
+          display: flex;
+          justify-content: center;
+          gap: 1rem;
+
+          a {
+            font-size: 1.2rem;
+            color: var(--link);
+            text-decoration: dashed underline;
+          }
+        }
+      }
+    }
+
+    .skills {
+      display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 1rem;
+      .skill {
+        text-align: center;
+        h3 {
+          margin-bottom: 0.5rem;
+        }
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          li {
+            margin: 0;
+            line-height: 1.3;
+          }
+        }
+      }
+    }
+
+    .body {
+      display: grid;
+      grid-template-areas:
+        'expertise projects'
+        'work work';
+      gap: 0.5rem;
+
+      .expertise {
+        grid-area: expertise;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        div {
+          margin: 0.25rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.1rem;
+          h3 {
+            font-size: 1.25rem;
+          }
+
+          p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+          }
+        }
+      }
+      .projects {
+        grid-area: projects;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        div {
+          margin: 0.25rem;
+          display: grid;
+          grid-template-areas:
+            'title tools'
+            'description description';
+          row-gap: 0.25rem;
+
+          .title {
+            grid-area: title;
+            color: var(--link);
+            text-decoration: dashed underline;
+            width: fit-content;
+            height: fit-content;
+            font-size: 1.25rem;
+          }
+          .tools {
+            grid-area: tools;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: right;
+            column-gap: 1rem;
+          }
+          .description {
+            grid-area: description;
+            line-height: 1.6;
+            font-size: 1.1rem;
+          }
+        }
+      }
+      .work {
+        grid-area: work;
+
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+
+        div {
+          display: grid;
+          grid-template-areas:
+            'company dates'
+            'position position';
+          .company {
+            grid-area: company;
+            font-size: 1.1rem;
+            color: var(--link);
+            text-decoration: dashed underline;
+            width: fit-content;
+          }
+          .position {
+            grid-area: position;
+            font-style: italic;
+            padding-left: 1rem;
+          }
+          .dates {
+            grid-area: dates;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media print {
+  a {
+    text-decoration: none !important;
+  }
+}
+</style>

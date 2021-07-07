@@ -300,6 +300,7 @@ export default {
       }
 
       .body {
+        grid-template-columns: 1fr;
         grid-template-areas: "expertise" "projects" "work";
       }
     }

@@ -187,16 +187,6 @@ export default {
         text-align: center;
       }
 
-      section {
-        div {
-          padding: 0;
-          p,
-          .description {
-            padding-left: 0.5rem;
-          }
-        }
-      }
-
       .expertise {
         grid-area: expertise;
         display: flex;
@@ -216,11 +206,12 @@ export default {
           }
         }
       }
+
       .projects {
         grid-area: projects;
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.5rem;
         div {
           display: grid;
           grid-template-areas:
@@ -232,7 +223,9 @@ export default {
             grid-area: title;
             width: fit-content;
             height: fit-content;
-            font-size: 1.25rem;
+            h3 {
+              font-size: 1.25rem;
+            }
           }
           .tools {
             grid-area: tools;
@@ -248,6 +241,7 @@ export default {
           }
         }
       }
+
       .work {
         grid-area: work;
 

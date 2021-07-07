@@ -12,7 +12,7 @@
           :href="to"
           v-for="{ to, is, id, alt } in socials"
           :key="id"
-          :aria-describedby="alt"
+          :aria-label="alt"
         >
           <component :is="is" />
         </a>
@@ -22,35 +22,35 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid'
-import Github from '@/assets/icons/Github.vue'
-import LinkedIn from '@/assets/icons/LinkedIn.vue'
+import { v4 as uuidv4 } from "uuid";
+import Github from "@/assets/icons/Github.vue";
+import LinkedIn from "@/assets/icons/LinkedIn.vue";
 export default {
   setup: () => ({
     links: [
       {
-        to: '/resume',
-        label: 'resume',
+        to: "/resume",
+        label: "resume",
       },
       {
-        to: '/projects',
-        label: 'projects',
+        to: "/projects",
+        label: "projects",
       },
     ].map((_) => ({ ..._, id: uuidv4() })),
     socials: [
       {
-        to: 'https://www.github.com/charliethomson',
+        to: "https://www.github.com/charliethomson",
         is: Github,
-        alt: 'github',
+        alt: "github",
       },
       {
-        to: 'https://www.linkedin.com/in/charliecthomson',
+        to: "https://www.linkedin.com/in/charliecthomson",
         is: LinkedIn,
-        alt: 'linkedin',
+        alt: "linkedin",
       },
     ].map((_) => ({ ..._, id: uuidv4() })),
   }),
-}
+};
 </script>
 
 <style lang="scss" scoped>

@@ -1,6 +1,6 @@
 <template>
   <div class="center">
-    <div class="container">
+    <div class="resume">
       <header>
         <h1>charlie thomson</h1>
         <div class="info">
@@ -84,8 +84,8 @@
 </template>
 
 <script>
-import { resume } from '@/data/resume'
-import { v4 as uuidv4 } from 'uuid'
+import { resume } from "@/data/resume";
+import { v4 as uuidv4 } from "uuid";
 export default {
   setup: () => ({
     skills: resume.skills.map(({ name, items }) => ({
@@ -105,21 +105,21 @@ export default {
     })),
     work: resume.work.map((_) => ({ ..._, id: uuidv4() })),
   }),
-}
+};
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .center {
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
-  .container {
+  .resume {
     color: var(--text);
     background-color: var(--body-bg);
-    padding: 0 2rem;
-    height: 11in;
-    width: calc(8.5in - 2rem);
+    padding: 2rem;
+    height: calc(11in - 4rem);
+    width: calc(8.5in - 4rem);
     h2,
     h3,
     p {
@@ -135,8 +135,9 @@ export default {
       justify-content: space-between;
 
       h1 {
-        font-family: 'Noto Serif', serif;
+        font-family: "Noto Serif", serif;
         font-weight: 800;
+        margin: 0;
       }
 
       .info {
@@ -151,8 +152,6 @@ export default {
 
           a {
             font-size: 1.2rem;
-            color: var(--link);
-            text-decoration: dashed underline;
           }
         }
       }
@@ -161,7 +160,7 @@ export default {
     .skills {
       display: flex;
       justify-content: space-evenly;
-      margin-bottom: 1rem;
+      margin: 1rem 0;
       .skill {
         text-align: center;
         h3 {
@@ -181,10 +180,22 @@ export default {
 
     .body {
       display: grid;
+      grid-template-columns: 1fr 1fr;
       grid-template-areas:
-        'expertise projects'
-        'work work';
+        "expertise projects"
+        "work work";
       gap: 0.5rem;
+      row-gap: 1rem;
+
+      section {
+        div {
+          padding: 0;
+          p,
+          .description {
+            padding-left: 0.5rem;
+          }
+        }
+      }
 
       .expertise {
         grid-area: expertise;
@@ -192,7 +203,6 @@ export default {
         flex-direction: column;
         gap: 0.5rem;
         div {
-          margin: 0.25rem;
           display: flex;
           flex-direction: column;
           gap: 0.1rem;
@@ -212,17 +222,14 @@ export default {
         flex-direction: column;
         gap: 1rem;
         div {
-          margin: 0.25rem;
           display: grid;
           grid-template-areas:
-            'title tools'
-            'description description';
+            "title tools"
+            "description description";
           row-gap: 0.25rem;
 
           .title {
             grid-area: title;
-            color: var(--link);
-            text-decoration: dashed underline;
             width: fit-content;
             height: fit-content;
             font-size: 1.25rem;
@@ -251,19 +258,21 @@ export default {
         div {
           display: grid;
           grid-template-areas:
-            'company dates'
-            'position position';
+            "company dates"
+            "position position";
+          p {
+            padding-left: 0;
+          }
+
           .company {
             grid-area: company;
-            font-size: 1.1rem;
-            color: var(--link);
-            text-decoration: dashed underline;
+            font-size: 1.05rem;
             width: fit-content;
           }
           .position {
             grid-area: position;
             font-style: italic;
-            padding-left: 1rem;
+            padding-left: 0.5rem;
           }
           .dates {
             grid-area: dates;
@@ -275,9 +284,25 @@ export default {
   }
 }
 
-@media print {
-  a {
-    text-decoration: none !important;
+@media screen and (max-width: 10.5in) {
+  .center {
+    .resume {
+      height: fit-content;
+      header {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .skills {
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .body {
+        grid-template-areas: "expertise" "projects" "work";
+      }
+    }
   }
 }
 </style>

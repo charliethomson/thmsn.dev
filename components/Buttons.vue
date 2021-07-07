@@ -27,72 +27,72 @@
 </template>
 
 <script>
-import { v4 as uuidv4 } from 'uuid'
-import PrintIcon from '@/assets/buttons/PrintIcon.vue'
-import PaintBrush from '@/assets/buttons/PaintBrush.vue'
-import DarkMode from '@/assets/buttons/DarkMode.vue'
-import LightMode from '@/assets/buttons/LightMode.vue'
-import LeftChevron from '@/assets/buttons/LeftChevron.vue'
-import { ref, computed, useRoute } from '@nuxtjs/composition-api'
-import { color, setColor } from '@/composables/colorPreferences'
+import { v4 as uuidv4 } from "uuid";
+import PrintIcon from "@/assets/buttons/PrintIcon.vue";
+import PaintBrush from "@/assets/buttons/PaintBrush.vue";
+import DarkMode from "@/assets/buttons/DarkMode.vue";
+import LightMode from "@/assets/buttons/LightMode.vue";
+import LeftChevron from "@/assets/buttons/LeftChevron.vue";
+import { ref, computed, useRoute } from "@nuxtjs/composition-api";
+import { color, setColor } from "@/composables/colorPreferences";
 export default {
   setup() {
-    const expanded = ref(false)
+    const expanded = ref(false);
 
-    const expand = () => (expanded.value = !expanded.value)
+    const expand = () => (expanded.value = !expanded.value);
 
     const buttons = [
       {
-        alt: 'print',
+        alt: "print",
         handler: () => {
-          if (process.browser) window.print()
-          else alert('Failed to print, email me @ charlie@thmsn.dev')
+          if (process.browser) window.print();
+          else alert("Failed to print, email me @ charlie@thmsn.dev");
         },
         is: PrintIcon,
-        show: computed(() => useRoute().value.name === 'resume'),
+        show: computed(() => useRoute().value.name === "resume"),
       },
       {
-        alt: 'expand theme buttons',
+        alt: "expand theme buttons",
         handler: expand,
         is: PaintBrush,
         show: computed(() => true),
       },
       {
-        alt: 'select dark theme',
+        alt: "select dark theme",
         handler: () => {
-          setColor('dark')
-          expand()
+          setColor("dark");
+          expand();
         },
         is: DarkMode,
         show: computed(() => expanded.value),
-        disabled: computed(() => color.value === 'dark'),
+        disabled: computed(() => color.value === "dark"),
       },
       {
-        alt: 'select light theme',
+        alt: "select light theme",
         handler: () => {
-          setColor('light')
-          expand()
+          setColor("light");
+          expand();
         },
         is: LightMode,
         show: computed(() => expanded.value),
-        disabled: computed(() => color.value === 'light'),
+        disabled: computed(() => color.value === "light"),
       },
-    ].map((_) => ({ ..._, id: uuidv4() }))
+    ].map((_) => ({ ..._, id: uuidv4() }));
 
     return {
       buttons,
       handleClick: (disabled, handler) => {
-        if (!disabled?.value) return handler()
+        if (!disabled?.value) return handler();
       },
       getValue: (r, def = false) => r?.value ?? def,
-      showBackButton: computed(() => useRoute().value.name !== 'index'),
-    }
+      showBackButton: computed(() => useRoute().value.name !== "index"),
+    };
   },
 
   components: {
     LeftChevron,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -142,6 +142,13 @@ export default {
 @media print {
   .container,
   .back-button {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 10.5in) {
+  .back-button,
+  .container {
     display: none;
   }
 }

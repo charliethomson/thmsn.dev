@@ -6,15 +6,15 @@
 </template>
 
 <script>
-import { color } from '@/composables/colorPreferences.js'
+import { color } from "@/composables/colorPreferences.js";
 
 export default {
   setup() {
     return {
       color,
-    }
+    };
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -37,15 +37,12 @@ body,
 }
 
 * {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
-.back-button {
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 1rem;
-  left: 0.5rem;
+a {
+  color: var(--link);
+  text-decoration: dashed underline;
 }
 
 .appContainer.dark {
@@ -61,5 +58,27 @@ body,
   --body-bg: #ddd;
   --app-bg: white;
   --accent: yellow;
+}
+
+::selection {
+  background-color: yellow;
+  color: black;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  .appContainer {
+    --text: black !important;
+    --link: #000 !important;
+    --body-bg: #ddd !important;
+    --app-bg: white !important;
+    --accent: yellow !important;
+  }
+  a {
+    text-decoration: none !important;
+  }
 }
 </style>

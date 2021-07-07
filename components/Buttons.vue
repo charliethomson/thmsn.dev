@@ -35,6 +35,7 @@ import LightMode from "@/assets/buttons/LightMode.vue";
 import LeftChevron from "@/assets/buttons/LeftChevron.vue";
 import { ref, computed, useRoute } from "@nuxtjs/composition-api";
 import { color, setColor } from "@/composables/colorPreferences";
+console.log(`Color is set to ${color.value}`);
 export default {
   setup() {
     const expanded = ref(false);

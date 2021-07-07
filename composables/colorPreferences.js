@@ -6,11 +6,9 @@ if (process.browser) {
     ? "dark"
     : "light";
   initialColor = window.localStorage.getItem("colorTheme") ?? defaultColor;
-} else {
-  initialColor = "dark";
 }
 
-export const color = ref(initialColor);
+export const color = ref(initialColor ?? "light");
 
 export const setColor = (col) => {
   color.value = col;

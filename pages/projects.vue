@@ -19,8 +19,8 @@
         <p v-html="project.learned"></p>
       </section>
       <footer>
-        <a :href="project.liveUrl" v-if="project.liveUrl">Live version</a>
-        <a :href="project.url"> See the source </a>
+        <a :href="project.liveUrl" v-if="project.liveUrl">demo</a>
+        <a :href="project.url">source</a>
       </footer>
     </article>
   </div>
@@ -54,6 +54,7 @@ export default {
       display: grid;
       grid-template-areas: "title title tools tools tools";
       h2 {
+        font-family: "Noto Serif", serif;
         grid-area: title;
         height: fit-content;
         margin: auto 0;

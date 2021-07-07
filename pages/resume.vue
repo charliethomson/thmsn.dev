@@ -126,10 +126,6 @@ export default {
       margin: 0;
     }
 
-    section h2 {
-      text-align: center;
-    }
-
     header {
       display: flex;
       justify-content: space-between;
@@ -186,6 +182,10 @@ export default {
         "work work";
       gap: 0.5rem;
       row-gap: 1rem;
+      section h2 {
+        font-family: "Noto Serif", serif;
+        text-align: center;
+      }
 
       section {
         div {

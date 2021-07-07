@@ -1,0 +1,14 @@
+.appContainer.dark {
+  --text: white;
+  --link: yellow;
+  --body-bg: black;
+  --app-bg: black;
+  --accent: #060028;
+}
+.appContainer.light {
+  --text: black;
+  --link: #000;
+  --body-bg: #ddd;
+  --app-bg: white;
+  --accent: yellow;
+}

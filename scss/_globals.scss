@@ -1,0 +1,48 @@
+html,
+body,
+#__nuxt,
+#__layout,
+.appContainer {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--app-bg);
+}
+.app {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  background: var(--app-bg);
+}
+
+* {
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+a {
+  color: var(--link);
+  text-decoration: dashed underline;
+}
+
+::selection {
+  background-color: yellow;
+  color: black;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  .appContainer {
+    --text: black !important;
+    --link: #000 !important;
+    --body-bg: #ddd !important;
+    --app-bg: white !important;
+    --accent: yellow !important;
+  }
+  a {
+    text-decoration: none !important;
+  }
+}

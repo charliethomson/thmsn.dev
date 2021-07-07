@@ -15,4 +15,5 @@ export default {
 <style lang="scss">
 @import url("@/scss/_globals.scss");
 @import url("@/scss/_vars.scss");
+@import url("@/scss/_fonts.scss");
 </style>

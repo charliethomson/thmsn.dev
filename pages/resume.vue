@@ -84,8 +84,8 @@
 </template>
 
 <script>
-import { resume } from "@/data/resume";
-import { v4 as uuidv4 } from "uuid";
+import { resume } from '@/data/resume'
+import { v4 as uuidv4 } from 'uuid'
 export default {
   setup: () => ({
     skills: resume.skills.map(({ name, items }) => ({
@@ -105,7 +105,7 @@ export default {
     })),
     work: resume.work.map((_) => ({ ..._, id: uuidv4() })),
   }),
-};
+}
 </script>
 
 <style lang="scss">
@@ -131,7 +131,7 @@ export default {
       justify-content: space-between;
 
       h1 {
-        font-family: "Noto Serif", serif;
+        font-family: 'Noto Serif', serif;
         font-weight: 800;
         margin: 0;
       }
@@ -178,12 +178,12 @@ export default {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-template-areas:
-        "expertise projects"
-        "work work";
+        'expertise projects'
+        'work work';
       gap: 0.5rem;
       row-gap: 1rem;
       section h2 {
-        font-family: "Noto Serif", serif;
+        font-family: 'Noto Serif', serif;
         text-align: center;
       }
 
@@ -203,6 +203,9 @@ export default {
           p {
             line-height: 1.6;
             font-size: 1.1rem;
+            &::before {
+              content: '-';
+            }
           }
         }
       }
@@ -215,8 +218,8 @@ export default {
         div {
           display: grid;
           grid-template-areas:
-            "title tools"
-            "description description";
+            'title tools'
+            'description description';
           row-gap: 0.25rem;
 
           .title {
@@ -238,6 +241,7 @@ export default {
             grid-area: description;
             line-height: 1.6;
             font-size: 1.1rem;
+            text-indent: 1rem;
           }
         }
       }
@@ -252,8 +256,8 @@ export default {
         div {
           display: grid;
           grid-template-areas:
-            "company dates"
-            "position position";
+            'company dates'
+            'position position';
           p {
             padding-left: 0;
           }
@@ -295,7 +299,7 @@ export default {
 
       .body {
         grid-template-columns: 1fr;
-        grid-template-areas: "expertise" "projects" "work";
+        grid-template-areas: 'expertise' 'projects' 'work';
       }
     }
   }

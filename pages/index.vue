@@ -19,14 +19,12 @@
           </a>
         </div>
       </div>
-      <HireMe />
     </div>
   </div>
 </template>
 
 <script>
 import { v4 as uuidv4 } from 'uuid'
-import HireMe from '@/components/HireMe.vue'
 import Github from '@/assets/icons/Github.vue'
 import LinkedIn from '@/assets/icons/LinkedIn.vue'
 import WakaTime from '@/assets/icons/WakaTime.vue'

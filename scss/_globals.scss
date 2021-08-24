@@ -18,10 +18,20 @@ body,
 * {
   font-family: 'Source Sans Pro', sans-serif;
 }
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+div {
+  color: var(--text);
+}
 
-a {
+a,
+a > * {
   color: var(--link);
-  text-decoration: dashed underline;
+  text-decoration: dashed underline 0.05rem;
 }
 
 @media print {

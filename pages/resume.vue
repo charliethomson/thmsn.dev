@@ -17,22 +17,26 @@
           </div>
         </div>
       </header>
-      <section class="skills" role="list">
-        <div
-          class="skill"
-          v-for="{ id, name, items } in skills"
-          :key="id"
-          role="listitem"
-        >
-          <h3>{{ name }}</h3>
-          <ul role="list">
-            <li v-for="{ id, item } in items" :key="id" role="listitem">
-              {{ item }}
-            </li>
-          </ul>
-        </div>
-      </section>
-      <div class="body">
+      <div class="main">
+        <section class="skills-container" role="list">
+          <h2>technologies</h2>
+
+          <div class="skills">
+            <div
+              class="skill"
+              v-for="{ id, name, items } in skills"
+              :key="id"
+              role="listitem"
+            >
+              <h3>{{ name }}</h3>
+              <ul role="list">
+                <li v-for="{ id, item } in items" :key="id" role="listitem">
+                  {{ item }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
         <section class="expertise" role="list">
           <h2>expertise</h2>
           <div
@@ -44,24 +48,6 @@
             <p v-for="{ item, id } in items" :key="id" role="listitem">
               {{ item }}
             </p>
-          </div>
-        </section>
-        <section class="projects" role="list">
-          <h2>projects</h2>
-          <div
-            v-for="{ id, url, name, tools, description } in projects"
-            :key="id"
-            role="listitem"
-          >
-            <a class="title" :href="url">
-              <h3>{{ name }}</h3>
-            </a>
-            <div class="tools" role="list">
-              <p v-for="{ id, tool } in tools" :key="id" role="listitem">
-                {{ tool }}
-              </p>
-            </div>
-            <p class="description">{{ description }}</p>
           </div>
         </section>
         <section class="work" role="list">
@@ -96,11 +82,6 @@ export default {
     expertise: resume.expertise.map(({ name, items }) => ({
       name,
       items: items.map((_) => ({ item: _, id: uuidv4() })),
-      id: uuidv4(),
-    })),
-    projects: resume.projects.map((_) => ({
-      ..._,
-      tools: _.tools.map((_) => ({ tool: _, id: uuidv4() })),
       id: uuidv4(),
     })),
     work: resume.work.map((_) => ({ ..._, id: uuidv4() })),
@@ -153,33 +134,10 @@ export default {
       }
     }
 
-    .skills {
+    .main {
+      margin-top: 1rem;
       display: flex;
-      justify-content: space-evenly;
-      margin: 1rem 0;
-      .skill {
-        text-align: center;
-        h3 {
-          margin-bottom: 0.5rem;
-        }
-        ul {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          li {
-            margin: 0;
-            line-height: 1.3;
-          }
-        }
-      }
-    }
-
-    .body {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas:
-        'expertise projects'
-        'work work';
+      flex-direction: column;
       gap: 0.5rem;
       row-gap: 1rem;
       section h2 {
@@ -187,6 +145,26 @@ export default {
         text-align: center;
       }
 
+      .skills {
+        display: flex;
+        justify-content: space-evenly;
+        margin: 1rem 0;
+        .skill {
+          text-align: center;
+          h3 {
+            margin-bottom: 0.5rem;
+          }
+          ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li {
+              margin: 0;
+              line-height: 1.3;
+            }
+          }
+        }
+      }
       .expertise {
         grid-area: expertise;
         display: flex;
@@ -197,55 +175,19 @@ export default {
           flex-direction: column;
           gap: 0.1rem;
           h3 {
-            font-size: 1.25rem;
+            font-size: 1.3rem;
           }
 
           p {
             line-height: 1.6;
-            font-size: 1.1rem;
+            font-size: 1.075rem;
+            margin-left: 0.5rem;
             &::before {
               content: '-';
             }
           }
         }
       }
-
-      .projects {
-        grid-area: projects;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        div {
-          display: grid;
-          grid-template-areas:
-            'title tools'
-            'description description';
-          row-gap: 0.25rem;
-
-          .title {
-            grid-area: title;
-            width: fit-content;
-            height: fit-content;
-            h3 {
-              font-size: 1.25rem;
-            }
-          }
-          .tools {
-            grid-area: tools;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: right;
-            column-gap: 1rem;
-          }
-          .description {
-            grid-area: description;
-            line-height: 1.6;
-            font-size: 1.1rem;
-            text-indent: 1rem;
-          }
-        }
-      }
-
       .work {
         grid-area: work;
 
@@ -299,7 +241,6 @@ export default {
 
       .body {
         grid-template-columns: 1fr;
-        grid-template-areas: 'expertise' 'projects' 'work';
       }
     }
   }

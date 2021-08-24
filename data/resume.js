@@ -1,66 +1,12 @@
-// export interface link {
-//   text: string;
-//   href: string;
-// }
-
-// export interface basics {
-//   name: string;
-//   email: string;
-//   phone: string;
-//   links: link[];
-// }
-
-// export interface project {
-//   name: string;
-//   tools: string[];
-//   description: string;
-//   url: string;
-// }
-
-// export interface expertise {
-//   name: string;
-//   items: string[];
-// }
-// export interface skill {
-//   name: string;
-//   items: array<link | string>;
-// }
-
-// export interface job {
-//   company: {
-//     name: string;
-//     link: string;
-//   };
-//   position: string;
-//   dates: string;
-// }
-
-// export interface section<t> {
-//   heading: string;
-//   data: t[];
-// }
-
-// export interface resume {
-//   header: {
-//     basics: basics;
-//     skills: skill[];
-//   };
-//   body: {
-//     expertise: section<expertise>;
-//     projects: section<project>;
-//     work: section<job>;
-//   };
-// }
-
 export const resume = {
   skills: [
     {
       name: 'systems',
-      items: ['rust', 'c#', 'c', 'c++'],
+      items: ['rust', 'c#', 'c', 'c++', 'go'],
     },
     {
       name: 'frontend',
-      items: ['vuejs', 'svelte', 'blazor', 'bootstrap'],
+      items: ['react', 'vuejs', 'svelte', 'bootstrap'],
     },
     {
       name: 'backend',
@@ -81,51 +27,25 @@ export const resume = {
   ],
   expertise: [
     {
-      name: 'systems',
-      items: [
-        'utilize object-oriented and data-oriented design paradigms for greater performance and code legibility',
-        'create applications to aid the efficiency of employee operations',
-        'design tools to automate monotonous tasks',
-        'develop comprehensive unit tests to ensure proper functionality',
-      ],
-    },
-    {
       name: 'backend',
       items: [
         'design strongly typed restful crud apis',
         'implement efficient algorithms for data transfer and transform',
-        'provide a secure interface for sql based databases',
+        'create data flow designs',
+        'implement comprehensive unit testing',
+        'design applications that adhere to the standards of modern security',
+        'identify real-world problems and implement robust technical solutions',
       ],
     },
     {
       name: 'frontend',
       items: [
         'build responsive, asynchronous web applications interfacing with public and private apis',
+        'utilize iaas and paas service providers to host web applications',
+        'create and maintain codebases using component based frameworks',
+        'collaborate with other developers on open source codebases',
+        'familiarity with agile development principles',
       ],
-    },
-  ],
-
-  projects: [
-    {
-      name: 'ticket manager',
-      tools: ['rust', 'actix-web', 'diesel', 'mariadb', 'svelte'],
-      description:
-        'a full stack web application co-developed with my roommate. i contributed a restful crud api written in rust using actix-web and a mariadb database with the diesel orm.',
-      url: 'https://www.github.com/charliethomson/ticket',
-    },
-    {
-      name: 'b',
-      tools: ['rust', 'webassembly', 'vuejs'],
-      description:
-        'a work in progress, a b interpreter written in rust, compiled to webassembly, running a vue app in the browser. currently the interpreter is complete, i am building the vue app.',
-      url: 'https://www.github.com/charliethomson/brust',
-    },
-    {
-      name: 'pemdrs',
-      tools: ['rust'],
-      description:
-        'a calculator written in rust that respects order of operations. i created a lexer, implemented the shunting yard algorithm, and implemented a stack-based postfix notation evaluator',
-      url: 'https://www.github.com/charliethomson/pemdrs',
     },
   ],
   work: [

@@ -1,20 +1,20 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: "static",
+  target: 'static',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "charlie thomson - developer",
+    title: 'charlie thomson - developer',
     htmlAttrs: {
-      lang: "en",
+      lang: 'en',
     },
     meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: "" },
-      { name: "format-detection", content: "telephone=no" },
+      { charset: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { hid: 'description', name: 'description', content: '' },
+      { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -28,7 +28,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 
-  buildModules: ["@nuxtjs/composition-api/module"],
+  buildModules: ['@nuxtjs/composition-api/module', '@nuxtjs/fontawesome'],
 
   generate: {
     // choose to suit your project
@@ -36,8 +36,35 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: [
+    '@nuxtjs/strapi',
+    '@nuxtjs/markdownit',
+    [
+      '@nuxtjs/fontawesome',
+      {
+        imports: [
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['faEnvelope', 'faPhone'],
+          },
+        ],
+        icons: {
+          solid: true,
+        },
+      },
+    ],
+  ],
+  strapi: {
+    entities: ['articles', 'writers'],
+    url: 'http://localhost:1337',
+  },
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true,
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-};
+}

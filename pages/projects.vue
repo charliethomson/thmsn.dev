@@ -1,4 +1,3 @@
-
 <template>
   <div class="container">
     <article v-for="project in projects" :key="project.id">
@@ -27,10 +26,10 @@
 </template>
 
 <script>
-import { projects } from "@/data/projects";
+import { projects } from '@/data/projects'
 export default {
   setup: () => ({ projects }),
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -52,9 +51,9 @@ export default {
     header {
       width: 100%;
       display: grid;
-      grid-template-areas: "title title tools tools tools";
+      grid-template-areas: 'title title tools tools tools';
       h2 {
-        font-family: "Noto Serif", serif;
+        font-family: 'Noto Serif', serif;
         grid-area: title;
         height: fit-content;
         margin: auto 0;

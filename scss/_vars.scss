@@ -12,3 +12,7 @@
   --app-bg: white;
   --accent: yellow;
 }
+
+.appContainer > * {
+  transition: color, background 0.25s ease;
+}

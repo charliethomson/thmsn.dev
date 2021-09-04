@@ -1,10 +1,6 @@
 export const resume = {
   skills: [
     {
-      name: 'systems',
-      items: ['rust', 'c#', 'c', 'c++', 'go'],
-    },
-    {
       name: 'frontend',
       items: ['react', 'vuejs', 'svelte', 'bootstrap'],
     },
@@ -15,6 +11,10 @@ export const resume = {
     {
       name: 'database',
       items: ['mysql', 'mongodb', 'postgresql', 'mariadb'],
+    },
+    {
+      name: 'systems',
+      items: ['rust', 'c#', 'c', 'c++', 'go'],
     },
     {
       name: 'scripting',
@@ -51,6 +51,14 @@ export const resume = {
   work: [
     {
       company: {
+        name: 'co-op financial services',
+        link: 'https://www.co-opfs.org/',
+      },
+      position: 'app developer',
+      dates: '09/2021-present',
+    },
+    {
+      company: {
         name: 'arcane software',
         link: 'https://arcane.software/',
       },
@@ -63,15 +71,7 @@ export const resume = {
         link: 'https://www.ubreakifix.com',
       },
       position: 'repair technician',
-      dates: '01/2020-present',
-    },
-    {
-      company: {
-        name: 'orange county public schools',
-        link: 'https://www.ocss-va.org',
-      },
-      position: 'information technology intern',
-      dates: '09/2018-09/2019',
+      dates: '01/2020-09/2021',
     },
   ],
 }

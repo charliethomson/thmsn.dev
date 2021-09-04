@@ -16,4 +16,13 @@ export default {
 @import url('@/scss/_globals.scss');
 @import url('@/scss/_vars.scss');
 @import url('@/scss/_fonts.scss');
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.25s;
+}
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
 </style>

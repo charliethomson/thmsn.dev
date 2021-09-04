@@ -46,7 +46,9 @@ a > * {
     --app-bg: white !important;
     --accent: yellow !important;
   }
-  a {
+
+  a,
+  a > * {
     text-decoration: none !important;
   }
 }

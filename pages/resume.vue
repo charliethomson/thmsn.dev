@@ -146,8 +146,9 @@ export default {
       }
 
       .skills {
-        display: flex;
-        justify-content: space-evenly;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
         margin: 1rem 0;
         .skill {
           text-align: center;
@@ -208,6 +209,7 @@ export default {
             grid-area: company;
             font-size: 1.05rem;
             width: fit-content;
+            max-width: 85%;
           }
           .position {
             grid-area: position;
@@ -232,15 +234,17 @@ export default {
         flex-direction: column;
         align-items: center;
       }
+      .main {
+        .skills {
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 1fr 1fr;
+          gap: 1rem;
+          margin-top: 1rem;
+        }
 
-      .skills {
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-
-      .body {
-        grid-template-columns: 1fr;
+        .body {
+          grid-template-columns: 1fr;
+        }
       }
     }
   }

@@ -11,7 +11,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'charlie is a full-stack developer, open to hiring' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
@@ -28,7 +28,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 
-  buildModules: ['@nuxtjs/composition-api/module', '@nuxtjs/fontawesome'],
+  buildModules: ['@nuxtjs/composition-api/module', '@nuxtjs/fontawesome', '@nuxtjs/google-analytics'],
 
   generate: {
     // choose to suit your project
@@ -37,8 +37,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/strapi',
-    '@nuxtjs/markdownit',
     [
       '@nuxtjs/fontawesome',
       {
@@ -54,15 +52,9 @@ export default {
       },
     ],
   ],
-  strapi: {
-    entities: ['articles', 'writers'],
-    url: 'http://localhost:1337',
-  },
-  markdownit: {
-    preset: 'default',
-    linkify: true,
-    breaks: true,
-    injected: true,
+  googleAnalytics: {
+    id: "G-2CPY5JYVCK",
+    checkDuplicatedScript: true
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

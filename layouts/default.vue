@@ -6,16 +6,19 @@
 </template>
 
 <script>
-import { color } from '@/composables/colorPreferences.js'
+import { color } from "@/composables/colorPreferences.js";
+import Buttons from "@/components/atoms/Buttons.vue";
 export default {
   setup: () => ({ color }),
-}
+  components: { Buttons },
+};
 </script>
 
 <style lang="scss">
-@import url('@/scss/_globals.scss');
-@import url('@/scss/_vars.scss');
-@import url('@/scss/_fonts.scss');
+@import url("@/scss/_globals.scss");
+@import url("@/scss/_vars.scss");
+/* Google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap");
 
 .page-enter-active,
 .page-leave-active {

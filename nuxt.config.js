@@ -28,7 +28,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 
-  buildModules: ['@nuxtjs/composition-api/module', '@nuxtjs/fontawesome', '@nuxtjs/google-analytics'],
+  buildModules: ['@nuxtjs/composition-api/module', '@nuxt/typescript-build', '@nuxtjs/google-analytics'],
 
   generate: {
     // choose to suit your project
@@ -43,7 +43,7 @@ export default {
         imports: [
           {
             set: '@fortawesome/free-solid-svg-icons',
-            icons: ['faEnvelope', 'faPhone'],
+            icons: ['faEnvelope', 'faPhone', 'faLink'],
           },
         ],
         icons: {
@@ -59,4 +59,5 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+  dev: process.env.NODE_ENV !== 'production'
 }

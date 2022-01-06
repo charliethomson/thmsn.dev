@@ -1,11 +1,20 @@
-.appContainer.dark {
+body.pre {
+  --text: #888;
+  --link: #888;
+  --body-bg: #888;
+  --app-bg: #888;
+  --accent: #888;
+}
+
+body.dark {
   --text: white;
   --link: yellow;
   --body-bg: black;
   --app-bg: black;
   --accent: #060028;
 }
-.appContainer.light {
+
+body.light {
   --text: black;
   --link: #000;
   --body-bg: #ddd;
@@ -13,6 +22,6 @@
   --accent: yellow;
 }
 
-.appContainer > * {
+body > * {
   transition: color, background 0.25s ease;
 }

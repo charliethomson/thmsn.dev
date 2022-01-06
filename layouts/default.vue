@@ -6,11 +6,23 @@
 </template>
 
 <script>
-import { color } from "@/composables/colorPreferences.js";
+import { color } from "~/composables/colorPreferences.ts";
 import Buttons from "@/components/atoms/Buttons.vue";
+import Loading from "@/components/atoms/Loading.vue";
+import { setColor } from "~/composables/colorPreferences";
 export default {
-  setup: () => ({ color }),
-  components: { Buttons },
+  setup: () => {
+    return { color };
+  },
+  components: { Buttons, Loading },
+  mounted() {
+    let configuredColor = undefined;
+    configuredColor =
+      window.localStorage.getItem("thmsn-dev-color-pref") ??
+      (window.matchMedia("(prefers-color-scheme: dark)") ? "dark" : "light");
+
+    if (configuredColor) setColor(configuredColor ?? "light");
+  },
 };
 </script>
 
@@ -22,10 +34,13 @@ export default {
 
 .page-enter-active,
 .page-leave-active {
-  transition: opacity 0.25s;
+  transition: opacity 0.5s;
 }
 .page-enter,
 .page-leave-to {
   opacity: 0;
+}
+.hide {
+  display: none;
 }
 </style>

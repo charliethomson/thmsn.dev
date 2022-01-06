@@ -34,7 +34,7 @@ import DarkMode from "@/assets/buttons/DarkMode.vue";
 import LightMode from "@/assets/buttons/LightMode.vue";
 import LeftChevron from "@/assets/buttons/LeftChevron.vue";
 import { ref, computed, useRoute } from "@nuxtjs/composition-api";
-import { color, setColor } from "@/composables/colorPreferences";
+import { color, setColor } from "~/composables/colorPreferences.ts";
 export default {
   setup() {
     const expanded = ref(false);

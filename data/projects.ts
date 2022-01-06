@@ -1,9 +1,19 @@
-export const projects = [
+import { idify, WithId } from "~/util/idify";
+
+export interface Project {
+  name: string;
+  url: string;
+  tools: WithId<string>[];
+  description: string;
+  learned?: string;
+}
+
+export const projects: WithId<Project>[] = idify([
   {
     name: 'ticket manager',
     url: 'https://www.github.com/charliethomson/ticket',
 
-    tools: ['rust', 'actix-web', 'diesel', 'mariadb', 'svelte'],
+    tools: idify(['rust', 'actix-web', 'diesel', 'mariadb', 'svelte']),
     description:
       'a full stack web application co-developed with my roommate. i contributed a restful crud api written in rust using actix-web and a mariadb database with the diesel orm.',
     learned:
@@ -13,7 +23,7 @@ export const projects = [
     name: 'pemdrs',
     url: 'https://www.github.com/charliethomson/pemdrs',
 
-    tools: ['rust'],
+    tools: idify(['rust']),
     description:
       'a calculator written in rust that respects order of operations. i created a lexer, implemented the shunting yard algorithm, and implemented a stack-based postfix notation evaluator',
     learned:
@@ -23,7 +33,7 @@ export const projects = [
     name: 'language',
     url: 'https://www.github.com/charliethomson/lang',
 
-    tools: ['dart'],
+    tools: idify(['dart']),
     description:
       'an educational programming language written in dart with a hand rolled lexer, parser, and interpreter',
     learned:
@@ -33,7 +43,7 @@ export const projects = [
     name: 'fish manpage completions',
     url: 'https://www.github.com/rust-dc/fish-manpage-completions',
 
-    tools: ['rust'],
+    tools: idify(['rust']),
     description:
       "an open source port of a portion of the <a href='https://fishshell.com/'>fish shell</a> that scraopes command completions from unix manpages.",
     learned:
@@ -43,8 +53,8 @@ export const projects = [
     name: 'population control',
     url: 'https://github.com/charliethomson/population_control',
 
-    tools: ['rust'],
+    tools: idify(['rust']),
     description:
       "this project was inspired by <a href='https://www.youtube.com/watch?v=6jn4ri7nkes'>this video</a> by cgp grey talking about apporitonment, <a href='https://youtu.be/6jn4ri7nkes?t=438'>where he says</a> how he thought the us doled out the house seats (which is not how they do it [see 'naive algorithm'])",
   },
-].map((_, id) => ({ ..._, id }))
+])

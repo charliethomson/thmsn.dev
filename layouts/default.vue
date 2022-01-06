@@ -5,13 +5,14 @@
   </div>
 </template>
 
-<script>
-import { color } from "@/composables/colorPreferences.js";
+<script lang='ts'>
+import { color } from "~/composables/colorPreferences";
 import Buttons from "@/components/atoms/Buttons.vue";
-export default {
+import { defineComponent } from "@nuxtjs/composition-api";
+export default defineComponent({
   setup: () => ({ color }),
   components: { Buttons },
-};
+});
 </script>
 
 <style lang="scss">

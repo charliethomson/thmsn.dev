@@ -26,18 +26,24 @@
   </div>
 </template>
 
-<script>
+<script lang='ts'>
 import { v4 as uuidv4 } from "uuid";
 import PrintIcon from "@/assets/buttons/PrintIcon.vue";
 import PaintBrush from "@/assets/buttons/PaintBrush.vue";
 import DarkMode from "@/assets/buttons/DarkMode.vue";
 import LightMode from "@/assets/buttons/LightMode.vue";
 import LeftChevron from "@/assets/buttons/LeftChevron.vue";
-import { ref, computed, useRoute } from "@nuxtjs/composition-api";
-import { color, setColor } from "@/composables/colorPreferences";
-export default {
+import {
+  ref,
+  computed,
+  useRoute,
+  defineComponent,
+} from "@nuxtjs/composition-api";
+import { color, setColor } from "~/composables/colorPreferences";
+export default defineComponent({
   setup() {
     const expanded = ref(false);
+    const route = useRoute();
 
     const expand = () => (expanded.value = !expanded.value);
 
@@ -49,7 +55,7 @@ export default {
           else alert("Failed to print, email me @ charlie@thmsn.dev");
         },
         is: PrintIcon,
-        show: computed(() => useRoute().value.name === "resume"),
+        show: computed(() => route.value.name === "resume"),
       },
       {
         alt: "expand theme buttons",
@@ -81,13 +87,19 @@ export default {
 
     return {
       buttons,
-      handleClick: (disabled, handler) => {
+      handleClick: (
+        disabled: { value: boolean } | undefined,
+        handler: (...a: any[]) => void
+      ): void => {
         if (!disabled?.value) return handler();
       },
-      getValue: (r, def = false) => r?.value ?? def,
-      showBackButton: computed(() => useRoute().value.name !== "index"),
+      getValue: <T>(
+        r: { value: T | undefined } | undefined,
+        def: T | boolean = false
+      ): T | boolean => r?.value ?? def,
+      showBackButton: computed(() => route.value.name !== "index"),
       backTo: computed(() => {
-        let _ = useRoute().value.fullPath.split("/").slice(0, -1).join("/");
+        let _ = route.value.fullPath.split("/").slice(0, -1).join("/");
         return _.length ? _ : "/";
       }),
     };
@@ -96,7 +108,7 @@ export default {
   components: {
     LeftChevron,
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

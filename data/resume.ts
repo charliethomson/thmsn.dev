@@ -1,54 +1,79 @@
-export const resume = {
-  skills: [
+import { idify, WithId } from "~/util/idify";
+
+export interface Resume {
+  skills: WithId<ResumeEntry>[];
+  expertise: WithId<ResumeEntry>[];
+  work: WithId<Work>[];
+}
+
+export interface ResumeEntry {
+  name: string;
+  items: WithId<string>[];
+}
+
+export interface Work {
+  company: Company;
+  position: string;
+  dates: string;
+}
+
+export interface Company {
+  name: string;
+  link: string;
+}
+
+
+export const resume: Resume = {
+  skills: idify([
     {
       name: 'frontend',
-      items: ['react', 'vuejs', 'svelte', 'bootstrap'],
+      items: idify(['react', 'vuejs', 'svelte', 'bootstrap']),
     },
     {
       name: 'backend',
-      items: ['actix-web', 'rocket', 'django', 'expressjs', 'asp.net'],
+      items: idify(['actix-web', 'rocket', 'django', 'expressjs', 'asp.net']),
     },
     {
       name: 'database',
-      items: ['mysql', 'mongodb', 'postgresql', 'mariadb'],
+      items: idify(['mysql', 'mongodb', 'postgresql', 'mariadb']),
     },
     {
       name: 'systems',
-      items: ['rust', 'c#', 'c', 'c++', 'go'],
+      items: idify(['rust', 'c#', 'c', 'c++', 'go']),
     },
     {
       name: 'scripting',
-      items: ['python', 'shell', 'typescript', 'javascript', 'dart'],
+      items: idify(['python', 'shell', 'typescript', 'javascript', 'dart']),
     },
     {
       name: 'platforms',
-      items: ['windows', 'macos', 'linux', 'web'],
+      items: idify(['windows', 'macos', 'linux', 'web']),
     },
-  ],
-  expertise: [
+  ]),
+  expertise: idify([
     {
       name: 'backend',
-      items: [
+      items: idify([
         'design strongly typed restful crud apis',
         'implement efficient algorithms for data transfer and transform',
         'create data flow designs',
         'implement comprehensive unit testing',
         'design applications that adhere to the standards of modern security',
         'identify real-world problems and implement robust technical solutions',
-      ],
+      ]),
     },
     {
       name: 'frontend',
-      items: [
+      items: idify([
         'build responsive, asynchronous web applications interfacing with public and private apis',
         'utilize iaas and paas service providers to host web applications',
         'create and maintain codebases using component based frameworks',
         'collaborate with other developers on open source codebases',
         'familiarity with agile development principles',
-      ],
+      ]),
     },
-  ],
-  work: [
+  ]),
+  work: idify([
     {
       company: {
         name: 'co-op financial services',
@@ -73,5 +98,5 @@ export const resume = {
       position: 'repair technician',
       dates: '01/2020-09/2021',
     },
-  ],
+  ]),
 }

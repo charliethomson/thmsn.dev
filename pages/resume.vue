@@ -69,24 +69,14 @@
   </div>
 </template>
 
-<script>
-import { resume } from '@/data/resume'
-import { v4 as uuidv4 } from 'uuid'
-export default {
+<script lang='ts'>
+import { resume } from "@/data/resume";
+import { defineComponent } from "@nuxtjs/composition-api";
+export default defineComponent({
   setup: () => ({
-    skills: resume.skills.map(({ name, items }) => ({
-      name,
-      items: items.map((_) => ({ item: _, id: uuidv4() })),
-      id: uuidv4(),
-    })),
-    expertise: resume.expertise.map(({ name, items }) => ({
-      name,
-      items: items.map((_) => ({ item: _, id: uuidv4() })),
-      id: uuidv4(),
-    })),
-    work: resume.work.map((_) => ({ ..._, id: uuidv4() })),
+    ...resume,
   }),
-}
+});
 </script>
 
 <style lang="scss">
@@ -112,7 +102,7 @@ export default {
       justify-content: space-between;
 
       h1 {
-        font-family: 'Noto Serif', serif;
+        font-family: "Noto Serif", serif;
         font-weight: 800;
         margin: 0;
       }
@@ -141,7 +131,7 @@ export default {
       gap: 0.5rem;
       row-gap: 1rem;
       section h2 {
-        font-family: 'Noto Serif', serif;
+        font-family: "Noto Serif", serif;
         text-align: center;
       }
 
@@ -184,7 +174,7 @@ export default {
             font-size: 1.075rem;
             margin-left: 0.5rem;
             &::before {
-              content: '-';
+              content: "-";
             }
           }
         }
@@ -199,8 +189,8 @@ export default {
         div {
           display: grid;
           grid-template-areas:
-            'company dates'
-            'position position';
+            "company dates"
+            "position position";
           p {
             padding-left: 0;
           }

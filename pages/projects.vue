@@ -6,7 +6,7 @@
           {{ project.name }}
         </h2>
         <ul>
-          <li v-for="(tool, idx) in project.tools" :key="idx">{{ tool }}</li>
+          <li v-for="{ item, id } in project.tools" :key="id">{{ item }}</li>
         </ul>
       </header>
       <section v-if="project.description">
@@ -25,11 +25,12 @@
   </div>
 </template>
 
-<script>
-import { projects } from '@/data/projects'
-export default {
+<script lang='ts'>
+import { projects } from "@/data/projects";
+import { defineComponent } from "@nuxtjs/composition-api";
+export default defineComponent({
   setup: () => ({ projects }),
-}
+});
 </script>
 
 <style lang="scss" scoped>
@@ -51,9 +52,9 @@ export default {
     header {
       width: 100%;
       display: grid;
-      grid-template-areas: 'title title tools tools tools';
+      grid-template-areas: "title title tools tools tools";
       h2 {
-        font-family: 'Noto Serif', serif;
+        font-family: "Noto Serif", serif;
         grid-area: title;
         height: fit-content;
         margin: auto 0;

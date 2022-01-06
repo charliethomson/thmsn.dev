@@ -23,42 +23,15 @@
   </div>
 </template>
 
-<script>
-import { v4 as uuidv4 } from 'uuid'
-import Github from '@/assets/icons/Github.vue'
-import LinkedIn from '@/assets/icons/LinkedIn.vue'
-import WakaTime from '@/assets/icons/WakaTime.vue'
-export default {
+<script lang='ts'>
+import { defineComponent } from "@nuxtjs/composition-api";
+import { links, socials } from "@/data/index";
+export default defineComponent({
   setup: () => ({
-    links: [
-      {
-        to: '/resume',
-        label: 'resume',
-      },
-      {
-        to: '/projects',
-        label: 'projects',
-      },
-    ].map((_) => ({ ..._, id: uuidv4() })),
-    socials: [
-      {
-        to: 'https://www.github.com/charliethomson',
-        is: Github,
-        alt: 'github',
-      },
-      {
-        to: 'https://www.linkedin.com/in/charliecthomson',
-        is: LinkedIn,
-        alt: 'linkedin',
-      },
-      {
-        to: 'https://wakatime.com/@charliethomson',
-        is: WakaTime,
-        alt: 'wakatime',
-      },
-    ].map((_) => ({ ..._, id: uuidv4() })),
+    links,
+    socials,
   }),
-}
+});
 </script>
 
 <style lang="scss" scoped>

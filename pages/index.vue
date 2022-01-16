@@ -77,8 +77,6 @@ export default defineComponent({
         a {
           svg {
             fill: var(--link);
-            stroke: var(--link);
-            border-radius: 50%;
             width: 2rem;
             height: 2rem;
           }

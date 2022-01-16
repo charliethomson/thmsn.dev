@@ -1,51 +1,28 @@
 <template>
-  <div class="container" v-if="allowAccess">
-    <div class="post" v-for="post in posts" :key="post.id">
-      <div class="info">
-        <nuxt-link :to="`/blog/${post.slug}`">
-          {{ post.title }}
-        </nuxt-link>
-        <p class="posted">{{ new Date(post.postedAt).toLocaleString() }}</p>
-      </div>
-      <div class="tags" v-if="post.tags">
-        <nuxt-link
-          class="tag"
-          v-for="tag in post.tags"
-          :key="tag.id"
-          :to="tag.link"
-        >
-          {{ tag.label }}
-        </nuxt-link>
-      </div>
-    </div>
-  </div>
-  <div v-else>
-    <div class="center">
-      <h1>You shouldn't be here yet</h1>
-      <nuxt-link to="/">Go back</nuxt-link>
-    </div>
-  </div>
+  <access-control>
+    <post-previews :posts="posts" />
+  </access-control>
 </template>
 
 
 <script lang="ts">
 import { defineComponent } from "@nuxtjs/composition-api";
-import { getPosts } from "@/data/registeredPosts";
-import { accessControl } from "@/util/accessControl";
+import { getPosts } from "@/composables/posts";
+import AccessControl from "~/components/atoms/AccessControl.vue";
+import PostPreviews from "~/components/pages/PostPreviews.vue";
 
 export default defineComponent({
+  components: { AccessControl, PostPreviews },
   setup() {
-    const { allowAccess } = accessControl("no");
-
     const posts = getPosts();
 
-    return { posts, allowAccess: true };
+    return { posts };
   },
 });
 </script>
 
-<style lang="scss" scoped>
-.container {
+<style lang="scss">
+.posts {
   display: flex;
   justify-content: center;
   align-items: top;

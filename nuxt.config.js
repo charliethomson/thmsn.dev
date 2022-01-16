@@ -1,20 +1,24 @@
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: "static",
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'charlie thomson - developer',
+    title: "charlie thomson - developer",
     htmlAttrs: {
-      lang: 'en',
+      lang: "en",
     },
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'charlie is a full-stack developer, open to hiring' },
-      { name: 'format-detection', content: 'telephone=no' },
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content: "charlie is a full-stack developer, open to hiring",
+      },
+      { name: "format-detection", content: "telephone=no" },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -28,7 +32,11 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 
-  buildModules: ['@nuxtjs/composition-api/module', '@nuxt/typescript-build', '@nuxtjs/google-analytics'],
+  buildModules: [
+    "@nuxtjs/composition-api/module",
+    "@nuxt/typescript-build",
+    "@nuxtjs/google-analytics",
+  ],
 
   generate: {
     // choose to suit your project
@@ -38,12 +46,12 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     [
-      '@nuxtjs/fontawesome',
+      "@nuxtjs/fontawesome",
       {
         imports: [
           {
-            set: '@fortawesome/free-solid-svg-icons',
-            icons: ['faEnvelope', 'faPhone', 'faLink'],
+            set: "@fortawesome/free-solid-svg-icons",
+            icons: ["faEnvelope", "faPhone", "faLink", "faClipboardList"],
           },
         ],
         icons: {
@@ -54,10 +62,10 @@ export default {
   ],
   googleAnalytics: {
     id: "G-2CPY5JYVCK",
-    checkDuplicatedScript: true
+    checkDuplicatedScript: true,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
-  dev: process.env.NODE_ENV !== 'production'
-}
+  dev: process.env.NODE_ENV !== "production",
+};

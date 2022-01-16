@@ -22,81 +22,80 @@ export interface Company {
   link: string;
 }
 
-
 export const resume: Resume = {
   skills: idify([
     {
-      name: 'frontend',
-      items: idify(['react', 'vuejs', 'svelte', 'bootstrap']),
+      name: "frontend",
+      items: idify(["react", "vuejs", "svelte", "bootstrap"]),
     },
     {
-      name: 'backend',
-      items: idify(['actix-web', 'rocket', 'django', 'expressjs', 'asp.net']),
+      name: "backend",
+      items: idify(["actix-web", "rocket", "django", "expressjs", "asp.net"]),
     },
     {
-      name: 'database',
-      items: idify(['mysql', 'mongodb', 'postgresql', 'mariadb']),
+      name: "database",
+      items: idify(["mysql", "mongodb", "postgresql", "mariadb"]),
     },
     {
-      name: 'systems',
-      items: idify(['rust', 'c#', 'c', 'c++', 'go']),
+      name: "systems",
+      items: idify(["rust", "c#", "c", "c++", "go"]),
     },
     {
-      name: 'scripting',
-      items: idify(['python', 'shell', 'typescript', 'javascript', 'dart']),
+      name: "scripting",
+      items: idify(["python", "shell", "typescript", "javascript", "dart"]),
     },
     {
-      name: 'platforms',
-      items: idify(['windows', 'macos', 'linux', 'web']),
+      name: "platforms",
+      items: idify(["windows", "macos", "linux", "web"]),
     },
   ]),
   expertise: idify([
     {
-      name: 'backend',
+      name: "backend",
       items: idify([
-        'design strongly typed restful crud apis',
-        'implement efficient algorithms for data transfer and transform',
-        'create data flow designs',
-        'implement comprehensive unit testing',
-        'design applications that adhere to the standards of modern security',
-        'identify real-world problems and implement robust technical solutions',
+        "design strongly typed restful crud apis",
+        "implement efficient algorithms for data transfer and transform",
+        "create data flow designs",
+        "implement comprehensive unit testing",
+        "design applications that adhere to the standards of modern security",
+        "identify real-world problems and implement robust technical solutions",
       ]),
     },
     {
-      name: 'frontend',
+      name: "frontend",
       items: idify([
-        'build responsive, asynchronous web applications interfacing with public and private apis',
-        'utilize iaas and paas service providers to host web applications',
-        'create and maintain codebases using component based frameworks',
-        'collaborate with other developers on open source codebases',
-        'familiarity with agile development principles',
+        "build responsive, asynchronous web applications interfacing with public and private apis",
+        "utilize iaas and paas service providers to host web applications",
+        "create and maintain codebases using component based frameworks",
+        "collaborate with other developers on open source codebases",
+        "familiarity with agile development principles",
       ]),
     },
   ]),
   work: idify([
     {
       company: {
-        name: 'co-op financial services',
-        link: 'https://www.co-opfs.org/',
+        name: "co-op financial services",
+        link: "https://www.co-opfs.org/",
       },
-      position: 'app developer',
-      dates: '09/2021-present',
+      position: "app developer",
+      dates: "09/2021-present",
     },
     {
       company: {
-        name: 'arcane software',
-        link: 'https://arcane.software/',
+        name: "arcane software",
+        link: "https://arcane.software/",
       },
-      position: 'web developer',
-      dates: '05/2021-present',
+      position: "web developer",
+      dates: "05/2021-present",
     },
     {
       company: {
-        name: 'ubreakifix',
-        link: 'https://www.ubreakifix.com',
+        name: "ubreakifix",
+        link: "https://www.ubreakifix.com",
       },
-      position: 'repair technician',
-      dates: '01/2020-09/2021',
+      position: "repair technician",
+      dates: "01/2020-09/2021",
     },
   ]),
-}
+};

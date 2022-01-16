@@ -15,30 +15,30 @@
 
       <div class="row">
         <tags :tags="tags" />
-        <date :utc="postedAt" />
+        <date :utc="post.postedAt" />
       </div>
     </header>
-    <main class="post-content"></main>
+    <main class="post-content">
+      <slot />
+    </main>
   </div>
 </template>
 
 <script lang="ts">
-import { getPostBySlug } from "~/composables/posts";
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent, useContext } from "@nuxtjs/composition-api";
 import { getPostLink } from "~/util/links";
-import Tags from "~/components/atoms/Tags.vue";
-import Date from "~/components/atoms/Date.vue";
+import Date from "../atoms/Date.vue";
+import Tags from "../atoms/Tags.vue";
 
 export default defineComponent({
   components: { Tags, Date },
-  asyncData({ params, error }) {
-    const post = getPostBySlug(params.slug);
-
+  props: { post: { type: Object, required: true } },
+  setup({ post }) {
     if (post === undefined)
-      error({ statusCode: 404, message: "Post not found" });
+      useContext().error({ statusCode: 404, message: "Post not found" });
 
     const copyLink = () =>
-      navigator.clipboard.writeText(getPostLink(params.slug));
+      navigator.clipboard.writeText(getPostLink(post.slug));
 
     return { ...post, copyLink };
   },

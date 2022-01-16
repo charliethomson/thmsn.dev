@@ -9,8 +9,13 @@
 import { color } from "~/composables/colorPreferences";
 import Buttons from "@/components/atoms/Buttons.vue";
 import { defineComponent } from "@nuxtjs/composition-api";
+import "~/data/posts";
 export default defineComponent({
-  setup: () => ({ color }),
+  setup: () => {
+    return {
+      color,
+    };
+  },
   components: { Buttons },
 });
 </script>

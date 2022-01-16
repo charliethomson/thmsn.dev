@@ -73,9 +73,7 @@
 import { resume } from "@/data/resume";
 import { defineComponent } from "@nuxtjs/composition-api";
 export default defineComponent({
-  setup: () => ({
-    ...resume,
-  }),
+  setup: () => resume,
 });
 </script>
 

@@ -1,7 +1,7 @@
 
 <template>
-  <access-control token="dev-index">
-    <div class="container">New index</div>
+  <access-control token="dev-projects">
+    <div class="container">New projects</div>
   </access-control>
 </template>
 

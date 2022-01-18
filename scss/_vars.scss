@@ -12,6 +12,13 @@
   --app-bg: white;
   --accent: yellow;
 }
+.appContainer.preload {
+  --text: #888;
+  --link: #888;
+  --body-bg: #888;
+  --app-bg: #888;
+  --accent: #888;
+}
 
 .appContainer > * {
   transition: color, background 0.25s ease;

@@ -27,7 +27,14 @@
 </template>
 
 <script lang='ts'>
-import { v4 as uuidv4 } from "uuid";
+interface Button {
+  alt: string;
+  handler: () => void;
+  is: Object;
+  show: ComputedRef<boolean>;
+  disabled?: ComputedRef<boolean>;
+}
+
 import PrintIcon from "@/assets/buttons/PrintIcon.vue";
 import PaintBrush from "@/assets/buttons/PaintBrush.vue";
 import DarkMode from "@/assets/buttons/DarkMode.vue";
@@ -38,8 +45,15 @@ import {
   computed,
   useRoute,
   defineComponent,
+  ComputedRef,
 } from "@nuxtjs/composition-api";
 import { color, setColor } from "~/composables/colorPreferences";
+import { idify, WithId } from "~/util/idify";
+import {
+  routerMap,
+  routerMapGetKey,
+  routerMapHasKey,
+} from "@/util/routeMapping";
 export default defineComponent({
   setup() {
     const expanded = ref(false);
@@ -47,61 +61,78 @@ export default defineComponent({
 
     const expand = () => (expanded.value = !expanded.value);
 
-    const buttons = [
-      {
-        alt: "print",
-        handler: () => {
-          if (process.browser) window.print();
-          else alert("Failed to print, email me @ charlie@thmsn.dev");
-        },
-        is: PrintIcon,
-        show: computed(() => route.value.name === "resume"),
+    const printButton: Button = {
+      alt: "print",
+      handler: () => {
+        if (process.browser) window.print();
+        else alert("Failed to print, email me @ charlie@thmsn.dev");
       },
-      {
-        alt: "expand theme buttons",
-        handler: expand,
-        is: PaintBrush,
-        show: computed(() => true),
+      is: PrintIcon,
+      show: computed(() => route.value.name === "resume"),
+    };
+
+    const expandButton: Button = {
+      alt: "expand theme buttons",
+      handler: expand,
+      is: PaintBrush,
+      show: computed(() => true),
+    };
+
+    const darkThemeButton: Button = {
+      alt: "select dark theme",
+      handler: () => {
+        setColor("dark");
+        expand();
       },
-      {
-        alt: "select dark theme",
-        handler: () => {
-          setColor("dark");
-          expand();
-        },
-        is: DarkMode,
-        show: computed(() => expanded.value),
-        disabled: computed(() => color.value === "dark"),
+      is: DarkMode,
+      show: computed(() => expanded.value),
+      disabled: computed(() => color.value === "dark"),
+    };
+
+    const lightThemeButton: Button = {
+      alt: "select light theme",
+      handler: () => {
+        setColor("light");
+        expand();
       },
-      {
-        alt: "select light theme",
-        handler: () => {
-          setColor("light");
-          expand();
-        },
-        is: LightMode,
-        show: computed(() => expanded.value),
-        disabled: computed(() => color.value === "light"),
-      },
-    ].map((_) => ({ ..._, id: uuidv4() }));
+      is: LightMode,
+      show: computed(() => expanded.value),
+      disabled: computed(() => color.value === "light"),
+    };
+
+    const buttons: WithId<Button>[] = idify([
+      printButton,
+      expandButton,
+      darkThemeButton,
+      lightThemeButton,
+    ]);
+
+    const handleClick = (
+      disabled: { value: boolean } | undefined,
+      handler: () => void
+    ) => {
+      if (!disabled?.value) return handler();
+    };
+
+    const getValue = <T>(
+      r: { value: T | undefined } | undefined,
+      def: T | boolean = false
+    ): T | boolean => r?.value ?? def;
+
+    const showBackButton = computed(() => route.value.name !== "index");
+    const backTo = computed(() => {
+      // /foo/bar?baz=10 => /foo, '/foo' => ''
+      let routeParent = route.value.fullPath.split("/").slice(0, -1).join("/");
+
+      return routerMap[routeParent] ?? routeParent;
+    });
 
     return {
       buttons,
-      handleClick: (
-        disabled: { value: boolean } | undefined,
-        handler: (...a: any[]) => void
-      ): void => {
-        if (!disabled?.value) return handler();
-      },
-      getValue: <T>(
-        r: { value: T | undefined } | undefined,
-        def: T | boolean = false
-      ): T | boolean => r?.value ?? def,
-      showBackButton: computed(() => route.value.name !== "index"),
-      backTo: computed(() => {
-        let _ = route.value.fullPath.split("/").slice(0, -1).join("/");
-        return _.length ? _ : "/";
-      }),
+      handleClick,
+      getValue,
+      showBackButton,
+      backTo,
     };
   },
 

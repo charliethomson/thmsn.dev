@@ -2,7 +2,7 @@
   <div class="preview-posts">
     <div class="post" v-for="post in posts" :key="post.id">
       <div class="info">
-        <nuxt-link :to="`/blog/${post.slug}`">
+        <nuxt-link :to="`/blog/posts/${post.slug}`">
           {{ post.title }}
         </nuxt-link>
         <date :utc="post.postedAt" />

@@ -2,18 +2,21 @@
 <template>
   <div class="access-control">
     <slot v-if="allowAccess" />
-    <div class="center" v-else>
-      <h1>You shouldn't be here yet</h1>
-      <nuxt-link to="/">Go back</nuxt-link>
-    </div>
+    <error-page
+      errorCode="401"
+      errorText="Access to this page is restricted."
+      v-else
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@nuxtjs/composition-api";
 import { accessControl } from "@/util/accessControl";
+import ErrorPage from "@/components/pages/ErrorPage.vue";
 
 export default defineComponent({
+  components: { ErrorPage },
   props: {
     token: { type: String, default: "no" },
   },

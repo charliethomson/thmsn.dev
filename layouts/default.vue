@@ -6,16 +6,20 @@
 </template>
 
 <script lang='ts'>
-import { color } from "~/composables/colorPreferences";
+import { color, getDefaultColor } from "~/composables/colorPreferences";
 import Buttons from "@/components/atoms/Buttons.vue";
-import { defineComponent } from "@nuxtjs/composition-api";
+import { defineComponent, onMounted, useRoute } from "@nuxtjs/composition-api";
+import { bindTitle } from "@/composables/title";
 import "~/data/posts";
 export default defineComponent({
   setup: () => {
+    onMounted(() => setTimeout(getDefaultColor, 25));
+    bindTitle(useRoute());
     return {
       color,
     };
   },
+  head: {},
   components: { Buttons },
 });
 </script>

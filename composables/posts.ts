@@ -16,7 +16,6 @@ export const newTag = (label: string): Tag => ({
 
 export interface Post {
   title: string;
-  component: Object;
   slug: string;
   // use Date.now() to get this
   postedAt: number;

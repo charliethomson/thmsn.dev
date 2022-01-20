@@ -69,15 +69,23 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.fade-enter-to,
+.fade-leave {
+  transform: rotate(0deg);
+}
 .fade-enter-active {
-  transition: opacity 0.125s ease;
+  transition: all 0.25s ease;
 }
 .fade-leave-active {
-  transition: opacity 0.125s cubic-bezier(1, 0.5, 0.8, 1);
+  transition: all 0.25s cubic-bezier(1, 0.5, 0.8, 1);
 }
-.fade-enter,
+.fade-enter {
+  opacity: 0;
+  transform: rotate(-180deg);
+}
 .fade-leave-to {
   opacity: 0;
+  transform: rotate(180deg);
 }
 
 .post {

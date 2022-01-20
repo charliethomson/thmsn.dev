@@ -4,7 +4,12 @@
       <div class="container">
         <h1>charlie thomson</h1>
         <nav>
-          <nuxt-link :to="to" v-for="{ to, label, id } in links" :key="id">
+          <nuxt-link
+            class="friendly-link"
+            :to="to"
+            v-for="{ to, label, id } in links"
+            :key="id"
+          >
             {{ label }}
           </nuxt-link>
         </nav>
@@ -65,8 +70,6 @@ export default defineComponent({
         gap: 2rem;
         a {
           font-size: 1.4rem;
-          color: var(--link);
-          text-decoration: none;
         }
       }
 

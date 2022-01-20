@@ -1,6 +1,6 @@
 .appContainer.dark {
   --text: white;
-  --link: yellow;
+  --link: hsl(0, 100%, 60%);
   --body-bg: black;
   --app-bg: black;
   --accent: #060028;
@@ -13,11 +13,11 @@
   --accent: yellow;
 }
 .appContainer.preload {
-  --text: #888;
-  --link: #888;
-  --body-bg: #888;
-  --app-bg: #888;
-  --accent: #888;
+  --text: #444;
+  --link: #444;
+  --body-bg: #444;
+  --app-bg: #444;
+  --accent: #444;
 }
 
 .appContainer > * {

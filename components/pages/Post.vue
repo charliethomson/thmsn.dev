@@ -2,19 +2,21 @@
   <div class="post">
     <header>
       <div class="row">
-        <h1 class="title">{{ title }}</h1>
-
-        <font-awesome-icon
-          class="copy-link"
-          icon="clipboard-list"
-          @click.prevent="copyLink"
-          aria-label="copy-link"
-          title="Copy Link"
-        />
+        <h1 class="title">{{ post.title }}</h1>
+        <transition name="fade" mode="out-in">
+          <font-awesome-icon
+            :class="['copy-link', linkCopied && 'disabled']"
+            :icon="copyIcon"
+            :key="new Date().getTime()"
+            @click.prevent="copyLink"
+            aria-label="copy-link"
+            title="Copy Link"
+          />
+        </transition>
       </div>
 
       <div class="row">
-        <tags :tags="tags" />
+        <tags :tags="post.tags" />
         <date :utc="post.postedAt" />
       </div>
     </header>
@@ -25,22 +27,88 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, useContext } from "@nuxtjs/composition-api";
+import {
+  computed,
+  defineComponent,
+  ref,
+  useContext,
+  useRoute,
+} from "@nuxtjs/composition-api";
+import { getPostBySlug } from "~/composables/posts";
 import { getPostLink } from "~/util/links";
+import { getSlug } from "~/util/title";
 import Date from "../atoms/Date.vue";
 import Tags from "../atoms/Tags.vue";
 
 export default defineComponent({
   components: { Tags, Date },
-  props: { post: { type: Object, required: true } },
-  setup({ post }) {
-    if (post === undefined)
-      useContext().error({ statusCode: 404, message: "Post not found" });
+  setup() {
+    const route = useRoute();
+    const { error } = useContext();
+    const post = computed(() => getPostBySlug(getSlug(route.value.path)));
 
-    const copyLink = () =>
-      navigator.clipboard.writeText(getPostLink(post.slug));
+    if (post.value === undefined)
+      return error({ statusCode: 404, message: "Post not found" });
 
-    return { ...post, copyLink };
+    const linkCopied = ref(false);
+
+    const copyLink = () => {
+      if (linkCopied.value) return;
+      linkCopied.value = true;
+      setTimeout(() => (linkCopied.value = false), 2500);
+      navigator.clipboard.writeText(getPostLink(post?.value?.slug ?? ""));
+    };
+
+    const copyIcon = computed(() =>
+      linkCopied.value ? "check" : "clipboard-list"
+    );
+
+    return { post, copyLink, copyIcon, linkCopied };
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.fade-enter-active {
+  transition: opacity 0.125s ease;
+}
+.fade-leave-active {
+  transition: opacity 0.125s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.post {
+  width: min(40rem, 75vw);
+  background-color: var(--body-bg);
+  margin: 1rem auto;
+  padding: 1rem;
+  overflow-y: auto;
+  height: calc(100vh - 4rem);
+  header {
+    display: flex;
+    flex-direction: column;
+    .row {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      h1.title {
+        margin: 0;
+      }
+      .copy-link {
+        padding: 1rem;
+        &:not(.disabled) {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  main.post-content > * {
+    overflow-y: auto;
+  }
+}
+</style>

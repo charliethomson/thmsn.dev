@@ -1,5 +1,5 @@
 <template>
-  <p class="posted">{{ new Date(utc).toLocaleString() }}</p>
+  <p class="posted">{{ new Date(utc).toLocaleDateString() }}</p>
 </template>
 
 <script lang="ts">

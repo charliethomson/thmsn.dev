@@ -51,7 +51,7 @@ export default {
         imports: [
           {
             set: "@fortawesome/free-solid-svg-icons",
-            icons: ["faEnvelope", "faPhone", "faLink", "faClipboardList"],
+            icons: ["faEnvelope", "faPhone", "faLink", "faClipboardList", "faCheck"],
           },
         ],
         icons: {

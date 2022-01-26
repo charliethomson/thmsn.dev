@@ -3,7 +3,7 @@
     <header>
       <div class="row">
         <h1 class="title">{{ post.title }}</h1>
-        <transition name="fade" mode="out-in">
+        <spin-fade-out-in>
           <font-awesome-icon
             :class="['copy-link', linkCopied && 'disabled']"
             :icon="copyIcon"
@@ -12,7 +12,7 @@
             aria-label="copy-link"
             title="Copy Link"
           />
-        </transition>
+        </spin-fade-out-in>
       </div>
 
       <div class="row">
@@ -39,9 +39,10 @@ import { getPostLink } from "~/util/links";
 import { getSlug } from "~/util/title";
 import Date from "../atoms/Date.vue";
 import Tags from "../atoms/Tags.vue";
+import SpinFadeOutIn from "@/components/transitions/SpinFadeOutIn.vue";
 
 export default defineComponent({
-  components: { Tags, Date },
+  components: { Tags, Date, SpinFadeOutIn },
   setup() {
     const route = useRoute();
     const { error } = useContext();
@@ -69,25 +70,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.fade-enter-to,
-.fade-leave {
-  transform: rotate(0deg);
-}
-.fade-enter-active {
-  transition: all 0.25s ease;
-}
-.fade-leave-active {
-  transition: all 0.25s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.fade-enter {
-  opacity: 0;
-  transform: rotate(-180deg);
-}
-.fade-leave-to {
-  opacity: 0;
-  transform: rotate(180deg);
-}
-
 .post {
   width: min(40rem, 75vw);
   background-color: var(--body-bg);

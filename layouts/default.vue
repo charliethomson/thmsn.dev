@@ -13,8 +13,9 @@ import { bindTitle } from "@/composables/title";
 import "~/data/posts";
 export default defineComponent({
   setup: () => {
+    const route = useRoute();
     onMounted(() => setTimeout(getDefaultColor, 25));
-    bindTitle(useRoute());
+    bindTitle(route);
     return {
       color,
     };

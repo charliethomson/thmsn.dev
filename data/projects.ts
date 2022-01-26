@@ -55,6 +55,6 @@ export const projects: WithId<Project>[] = idify([
 
     tools: idify(['rust']),
     description:
-      "this project was inspired by <a href='https://www.youtube.com/watch?v=6jn4ri7nkes'>this video</a> by cgp grey talking about apporitonment, <a href='https://youtu.be/6jn4ri7nkes?t=438'>where he says</a> how he thought the us doled out the house seats (which is not how they do it [see 'naive algorithm'])",
+      "this project was inspired by <a href='https://www.youtube.com/watch?v=6JN4RI7nkes'>this video</a> by cgp grey talking about apporitonment, <a href='https://youtu.be/6JN4RI7nkes?t=438'>where he says</a> how he thought the us doled out the house seats (which is not how they do it [see 'naive algorithm'])",
   },
 ])

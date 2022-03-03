@@ -75,10 +75,10 @@ export const resume: Resume = {
   work: idify([
     {
       company: {
-        name: "co-op financial services",
+        name: "co-op solutions",
         link: "https://www.co-opfs.org/",
       },
-      position: "app developer",
+      position: "application developer I",
       dates: "09/2021-present",
     },
     {

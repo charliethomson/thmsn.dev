@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { defineComponent } from "@nuxtjs/composition-api";
-import { accessControl } from "@/util/accessControl";
+import { registerAccessControl } from "@/util/accessControl";
 import ErrorPage from "@/components/pages/ErrorPage.vue";
 
 export default defineComponent({
@@ -20,11 +20,7 @@ export default defineComponent({
   props: {
     token: { type: String, default: "no" },
   },
-  setup(props) {
-    const { allowAccess } = accessControl(props.token);
-
-    return { allowAccess };
-  },
+  setup: ({ token }: { token: string }) => registerAccessControl(token),
 });
 </script>
 

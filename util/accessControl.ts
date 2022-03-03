@@ -6,7 +6,7 @@ export interface AccessControl {
   removeListener: () => void;
 }
 
-export const accessControl = (key: string): AccessControl => {
+export const registerAccessControl = (key: string): AccessControl => {
   let buffer = "";
 
   const allowAccess = ref(false);

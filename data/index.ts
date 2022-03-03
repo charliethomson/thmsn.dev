@@ -25,6 +25,19 @@ export const links: WithId<IndexLink>[] = idify([
     label: "projects",
   },
 ]);
+
+export const devLinks: WithId<IndexLink>[] = [
+  ...links.map((link) => ({
+    ...link,
+    to: "/dev" + link.to,
+    label: link.label.slice(0, 1).toUpperCase() + link.label.slice(1),
+  })),
+  idify({
+    to: "/dev/blog",
+    label: "Blog",
+  }),
+];
+
 export const socials: WithId<SocialLink>[] = idify([
   {
     to: "https://www.github.com/charliethomson",

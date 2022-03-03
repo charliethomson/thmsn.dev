@@ -59,19 +59,19 @@ a.friendly-link {
   background-color: hsl(0, 100%, 60%);
   color: black;
 }
-.app {
+* {
   scrollbar-width: thin;
   scrollbar-color: var(--link) var(--body-bg);
 }
-.app::-webkit-scrollbar {
-  width: 12px; /* width of the entire scrollbar */
+*::-webkit-scrollbar {
+  width: 10px; /* width of the entire scrollbar */
 }
 
-.app::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: var(--body-bg); /* color of the tracking area */
 }
 
-.app::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background-color: var(--link); /* color of the scroll thumb */
   border-radius: 20px; /* roundness of the scroll thumb */
   border: 3px solid var(--body-bg); /* creates padding around scroll thumb */

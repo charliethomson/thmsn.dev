@@ -36,10 +36,10 @@ import {
 } from "@nuxtjs/composition-api";
 import { getPostBySlug } from "~/composables/posts";
 import { getPostLink } from "~/util/links";
-import { getSlug } from "~/util/title";
 import Date from "../atoms/Date.vue";
 import Tags from "../atoms/Tags.vue";
 import SpinFadeOutIn from "@/components/transitions/SpinFadeOutIn.vue";
+import { getSlug } from "~/data/titles";
 
 export default defineComponent({
   components: { Tags, Date, SpinFadeOutIn },

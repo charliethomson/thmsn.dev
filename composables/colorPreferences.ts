@@ -13,10 +13,9 @@ export const setColor = (col: ColorOption) => {
 export const getDefaultColor = () => {
   if (process.client) {
     color.value =
-      window.localStorage.getItem(COLOR_KEY) as ColorOption ??
-      (window.matchMedia("prefers-dark-interface").matches
+      (window.localStorage.getItem(COLOR_KEY) as ColorOption) ??
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
-        : "light"
-      );
+        : "light");
   }
-}
+};

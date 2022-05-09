@@ -19,6 +19,14 @@ export default {
       { name: "format-detection", content: "telephone=no" },
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    script: [
+      {
+        async: true,
+        defer: true,
+        "data-website-id": "cf63d3c6-6796-4143-a7ad-32e450c6e459",
+        src: "https://analytics.thmsn.dev/umami.js",
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -32,11 +40,7 @@ export default {
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 
-  buildModules: [
-    "@nuxtjs/composition-api/module",
-    "@nuxt/typescript-build",
-    "@nuxtjs/google-analytics",
-  ],
+  buildModules: ["@nuxtjs/composition-api/module", "@nuxt/typescript-build"],
 
   generate: {
     // choose to suit your project
@@ -66,10 +70,6 @@ export default {
       },
     ],
   ],
-  googleAnalytics: {
-    id: "G-2CPY5JYVCK",
-    checkDuplicatedScript: true,
-  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

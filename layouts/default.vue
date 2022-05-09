@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { color, getDefaultColor } from "~/composables/colorPreferences";
 import Buttons from "@/components/atoms/Buttons.vue";
 import { defineComponent, onMounted, useRoute } from "@nuxtjs/composition-api";

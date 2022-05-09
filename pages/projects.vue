@@ -18,14 +18,29 @@
         <p v-html="project.learned"></p>
       </section>
       <footer>
-        <a :href="project.liveUrl" v-if="project.liveUrl">demo</a>
-        <a :href="project.url">source</a>
+        <a
+          :class="`umami--click--${project.name.replace(
+            /\s+/g,
+            '-'
+          )}-demo-link`"
+          :href="project.liveUrl"
+          v-if="project.liveUrl"
+          >demo</a
+        >
+        <a
+          :class="`umami--click--${project.name.replace(
+            /\s+/g,
+            '-'
+          )}-source-link`"
+          :href="project.url"
+          >source</a
+        >
       </footer>
     </article>
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { projects } from "@/data/projects";
 import { defineComponent } from "@nuxtjs/composition-api";
 export default defineComponent({

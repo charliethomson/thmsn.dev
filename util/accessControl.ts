@@ -14,6 +14,7 @@ export const registerAccessControl = (key: string): AccessControl => {
     buffer += ev.key;
     if (buffer.toLowerCase().endsWith(key.toLowerCase())) {
       removeListener();
+      umami("access-control-bypass");
       allowAccess.value = true;
     }
   };

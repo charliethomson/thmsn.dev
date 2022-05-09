@@ -5,7 +5,10 @@
         <h1>charlie thomson</h1>
         <nav>
           <nuxt-link
-            class="friendly-link"
+            :class="[
+              `umami--click--${label.replace(/\s+/g, '-')}-button`,
+              'friendly-link',
+            ]"
             :to="to"
             v-for="{ to, label, id } in links"
             :key="id"
@@ -15,6 +18,7 @@
         </nav>
         <div class="socials">
           <a
+            :class="`umami--click--${alt.replace(/\s+/g, '-')}-button`"
             :href="to"
             v-for="{ to, is, id, alt } in socials"
             :key="id"
@@ -28,7 +32,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { defineComponent } from "@nuxtjs/composition-api";
 import { links, socials } from "@/data/index";
 export default defineComponent({

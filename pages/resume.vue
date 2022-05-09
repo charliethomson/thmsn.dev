@@ -5,13 +5,26 @@
         <h1>charlie thomson</h1>
         <div class="info">
           <div class="left">
-            <a href="mailto:charlie@thmsn.dev">charlie@thmsn.dev</a>
-            <a href="tel:5402292296">(540) 229-2296</a>
+            <a
+              :class="`umami--click--resume-email-link`"
+              href="mailto:charlie@thmsn.dev"
+              >charlie@thmsn.dev</a
+            >
+            <a :class="`umami--click--resume-phone-link`" href="tel:5402292296"
+              >(540) 229-2296</a
+            >
           </div>
           <div class="sep"></div>
           <div class="right">
-            <a href="https://thmsn.dev">thmsn.dev</a>
-            <a href="https://www.github.com/charliethomson">
+            <a
+              :class="`umami--click--resume-site-link`"
+              href="https://thmsn.dev"
+              >thmsn.dev</a
+            >
+            <a
+              :class="`umami--click--resume-github-link`"
+              href="https://www.github.com/charliethomson"
+            >
               github/charliethomson
             </a>
           </div>
@@ -57,7 +70,13 @@
             :key="id"
             role="listitem"
           >
-            <a class="company" :href="link">
+            <a
+              :class="[
+                `umami--click-${name.replace(/\s+/g, '-')}--link`,
+                'company',
+              ]"
+              :href="link"
+            >
               <h3>{{ name }}</h3>
             </a>
             <p class="position">{{ position }}</p>
@@ -69,7 +88,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 import { resume } from "@/data/resume";
 import { defineComponent } from "@nuxtjs/composition-api";
 export default defineComponent({

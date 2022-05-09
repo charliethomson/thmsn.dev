@@ -13,7 +13,11 @@
         v-for="{ id, alt, handler, is, disabled, show } in buttons"
         :key="id"
         class="button"
-        :class="{ dim: getValue(disabled), hidden: !getValue(show) }"
+        :class="[
+          getValue(disabled) ? 'dim' : '',
+          !getValue(show) ? 'hidden' : '',
+          `umami--click--${alt.replace(/\s+/g, '-')}`,
+        ]"
         role="button"
         :aria-disabled="getValue(disabled)"
         :aria-hidden="!getValue(show)"
@@ -26,7 +30,7 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script lang="ts">
 interface Button {
   alt: string;
   handler: () => void;

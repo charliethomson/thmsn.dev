@@ -78,16 +78,8 @@ export const resume: Resume = {
         name: "co-op solutions",
         link: "https://www.co-opfs.org/",
       },
-      position: "application developer I",
+      position: "application developer",
       dates: "09/2021-present",
-    },
-    {
-      company: {
-        name: "arcane software",
-        link: "https://arcane.software/",
-      },
-      position: "web developer",
-      dates: "05/2021-present",
     },
     {
       company: {

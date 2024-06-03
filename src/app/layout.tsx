@@ -1,6 +1,8 @@
 import "~/styles/globals.css";
-
-import { GeistSans } from "geist/font/sans";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+config.autoAddCss = false;
+import { Nunito } from "next/font/google";
 
 export const metadata = {
   title: "Create T3 App",
@@ -8,14 +10,34 @@ export const metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
+const nunito = Nunito({ subsets: ["latin"] });
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+    <html lang="en" className={`${nunito.className}`}>
+      <body
+        className={
+          "xs:px-4 xs:py-4 flex h-screen w-screen items-center justify-center overflow-hidden px-2 py-2 pb-8 transition-all sm:px-16 sm:py-16 md:px-24  md:py-16 lg:px-32 lg:py-32"
+        }
+      >
+        <article
+          id="root"
+          className={
+            "h-full max-w-7xl flex-1 rounded-3xl bg-slate-200 p-16 shadow-2xl shadow-slate-900"
+          }
+        >
+          {children}
+        </article>
+        <footer className="absolute bottom-1 flex gap-8">
+          <span className="lowercase text-slate-400">
+            Made with <span>❤️</span> in VA
+          </span>
+        </footer>
+      </body>
     </html>
   );
 }

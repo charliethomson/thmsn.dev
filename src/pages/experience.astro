@@ -9,14 +9,14 @@ import { Icon } from "astro-icon/components";
         <div class="flex items-center gap-2">
             <a
                 href="/"
-                class="flex size-12 items-center justify-center rounded-xl text-4xl text-slate-500 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600"
+                class="hidden sm:flex size-12 items-center justify-center rounded-xl text-4xl text-slate-500 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600"
                 title="Return to Home"
             >
                 <Icon name="mingcute:left-line" />
             </a>
-            <h1 class="text-4xl font-semibold">My Experience</h1>
+            <h1 class="text-4xl font-semibold">My&nbsp;Experience</h1>
         </div>
-        <ul>
+        <ul class="overflow-auto flex gap-4 sm:gap-1 flex-col px-2">
             <!-- <ExperienceJob
                 startDate="09/2024"
                 endDate="present"

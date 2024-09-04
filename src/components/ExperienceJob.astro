@@ -51,7 +51,9 @@ const { startDate, endDate, companyUrl, companyName, title } = Astro.props;
         <h3 class="text-xl font-bold text-slate-500">
             <a href={companyUrl} target="_blank"> {companyName} </a>
         </h3>
-        <div class="flex items-center gap-2">
+        <div
+            class="flex sm:items-center sm:gap-2 flex-col sm:flex-row py-4 sm:py-0"
+        >
             <span class="text-lg">{title}</span>
             <span
                 id="separator"
@@ -62,12 +64,12 @@ const { startDate, endDate, companyUrl, companyName, title } = Astro.props;
     <div id="information" class="pb-4 group flex flex-col items-center gap-1">
         <div
             id="information-container"
-            class="max-h-[3em] overflow-hidden group-hover:max-h-[200px] transition-all pl-4 w-full"
+            class="max-h-full sm:max-h-[3em] overflow-hidden group-hover:max-h-[200px] transition-all pl-4 w-full"
         >
             <slot />
         </div>
         <div
-            class="group-hover:opacity-0 opacity-1 transition-all text-slate-700 font-light text-sm italic"
+            class="hidden sm:block group-hover:hidden text-slate-700 font-light text-sm italic"
         >
             hover to see more
         </div>

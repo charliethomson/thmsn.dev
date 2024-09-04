@@ -9,7 +9,7 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
     <body
-        class={"xs:px-4 xs:py-4 flex h-screen w-screen items-center justify-center overflow-hidden px-2 py-2 pb-8 transition-all sm:px-16 sm:py-16 md:px-24  md:py-16 lg:px-32 lg:py-32"}
+        class={"xs:px-4 xs:py-4 flex w-screen items-center justify-center overflow-hidden px-2 py-2 pb-8 transition-all sm:px-16 sm:py-16 md:px-24  md:py-16 lg:px-32 lg:py-32"}
     >
         <article
             id="root"
@@ -30,7 +30,8 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         background-image: url("/always-grey.png");
         background-size: 24px;
         background-repeat: repeat;
-        height: 100vh;
+        font-family: "Nunito Variable", sans-serif;
+        height: 100dvh;
         background-color: theme("colors.slate.800");
     }
 
@@ -38,9 +39,5 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         background-image: url("/asfalt-dark.png");
         background-size: 128px;
         background-repeat: repeat;
-    }
-
-    body {
-        font-family: "Nunito Variable", sans-serif;
     }
 </style>

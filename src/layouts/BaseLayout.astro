@@ -1,0 +1,46 @@
+---
+import "@fontsource-variable/nunito";
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<html lang="en">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+    <body
+        class={"xs:px-4 xs:py-4 flex h-screen w-screen items-center justify-center overflow-hidden px-2 py-2 pb-8 transition-all sm:px-16 sm:py-16 md:px-24  md:py-16 lg:px-32 lg:py-32"}
+    >
+        <article
+            id="root"
+            class={"h-full max-w-7xl flex-1 rounded-3xl bg-slate-200 p-16 shadow-2xl shadow-slate-900"}
+        >
+            <slot />
+        </article>
+        <footer class="absolute bottom-1 flex gap-8">
+            <span class="lowercase text-slate-400">
+                made with <span>❤️</span> in va
+            </span>
+        </footer>
+    </body>
+</html>
+
+<style is:global>
+    body {
+        background-image: url("/always-grey.png");
+        background-size: 24px;
+        background-repeat: repeat;
+        height: 100vh;
+        background-color: theme("colors.slate.800");
+    }
+
+    #root {
+        background-image: url("/asfalt-dark.png");
+        background-size: 128px;
+        background-repeat: repeat;
+    }
+
+    body {
+        font-family: "Nunito Variable", sans-serif;
+    }
+</style>

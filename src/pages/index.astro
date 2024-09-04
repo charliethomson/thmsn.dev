@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout>
+    <main class="grid h-full grid-cols-2 gap-8">
+        <section id="left" class="flex flex-col justify-between">
+            <section id="top" class="flex flex-col gap-4">
+                <h1 class={"text-4xl font-semibold"}>Charlie Thomson</h1>
+                <p class="text-lg">I build things</p>
+                <p class="text-lg">
+                    I work for&nbsp;
+                    <a
+                        href="https://velera.com"
+                        target="_blank"
+                        class="font-medium text-slate-500"
+                    >
+                        Velera
+                    </a>
+                    , primarily writing C# and React, currently focused on DevOps.&nbsp;
+                    <a
+                        href="/experience"
+                        class="font-medium text-slate-500"
+                        aria-disabled={true}
+                    >
+                        Read more about my experience
+                    </a>
+                </p>
+                <p class="text-lg">
+                    I&apos;m working on some side projects as well 😁
+                </p>
+            </section>
+            <section id="links" class="flex gap-4 justify-self-end">
+                <a
+                    target="_blank"
+                    href="https://twitter.com/poetayetoe"
+                    class="flex size-12 items-center justify-center rounded-xl text-2xl text-slate-400 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600"
+                >
+                    <Icon name="mingcute:twitter-fill" />
+                </a>
+                <a
+                    target="_blank"
+                    href="https://www.linkedin.com/in/charliecthomson/"
+                    class="flex size-12 items-center justify-center rounded-xl text-2xl text-slate-400 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600"
+                >
+                    <Icon name="mingcute:linkedin-fill" />
+                </a>
+                <a
+                    target="_blank"
+                    href="mailto:charlie@thmsn.dev"
+                    class="flex size-12 items-center justify-center rounded-xl text-2xl text-slate-400 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600"
+                >
+                    <Icon name="mingcute:mail-fill" />
+                </a>
+            </section>
+        </section>
+        <section id="right" class="flex flex-col gap-8">
+            <h3 class="text-right text-4xl font-extralight">Things</h3>
+            <span class="w-full text-right text-lg font-extralight">
+                hmmm... there doesn&apos;t seem to be anything here yet?
+            </span>
+        </section>
+    </main>
+</BaseLayout>

@@ -1,0 +1,132 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ExperienceJob from "../components/ExperienceJob.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<BaseLayout>
+    <main class="flex h-full flex-col gap-8">
+        <div class="flex items-center gap-2">
+            <a
+                href="/"
+                class="flex size-12 items-center justify-center rounded-xl text-4xl text-slate-500 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600"
+                title="Return to Home"
+            >
+                <Icon name="mingcute:left-line" />
+            </a>
+            <h1 class="text-4xl font-semibold">My Experience</h1>
+        </div>
+        <ul>
+            <!-- <ExperienceJob
+                startDate="09/2024"
+                endDate="present"
+                companyUrl="https://velera.com"
+                companyName="Velera"
+                title="Software Engineer III"
+            /> -->
+            <ExperienceJob
+                startDate="05/2023"
+                endDate="present"
+                companyUrl="https://coop.org"
+                companyName="Co-op Solutions"
+                title="Developer II"
+            >
+                <ul class="list-disc">
+                    <li>Second in command on a team focused on DevOps</li>
+                    <li>
+                        Created and maintained build and release pipelines in
+                        Azure DevOps for <a
+                            target="_blank"
+                            class="text-slate-500"
+                            href="https://azure.microsoft.com/en-us/products/databricks/"
+                        >
+                            Azure Databricks</a
+                        >, <a
+                            target="_blank"
+                            class="text-slate-500"
+                            href="https://azure.microsoft.com/en-us/products/data-factory/"
+                        >
+                            Azure Data Factory</a
+                        >, and <a
+                            target="_blank"
+                            class="text-slate-500"
+                            href="https://support.jamsscheduler.com/hc/en-us"
+                        >
+                            JAMS
+                        </a>
+                    </li>
+                    <li>
+                        <!-- major infra upgrade -->
+                        Supported infrastructure
+                        <a
+                            target="_blank"
+                            class="text-slate-500"
+                            href="https://azure.microsoft.com/en-us/updates/app-service-environment-v1-and-v2-retirement-announcement/"
+                        >
+                            migration from App Service Environment v2 to v3
+                        </a>
+                    </li>
+                    <li>
+                        Led design and development of a platform for internal
+                        applications, built with React, Redux, C#, and T-SQL,
+                        running in Azure
+                    </li>
+                </ul>
+            </ExperienceJob>
+            <ExperienceJob
+                startDate="02/2022"
+                endDate="05/2023"
+                companyUrl="https://coop.org"
+                companyName="Co-op Financial Services"
+                title="Application Developer I"
+            >
+                <ul class="list-disc">
+                    <li>
+                        Worked as a full stack developer on a team that was
+                        tasked with building a multi-vendor customer support
+                        application for managing credit union cardholder
+                        accounts
+                    </li>
+                    <li>
+                        Worked with a team of designers using Figma, following
+                        standardized design system to build a sleek and modern
+                        web application
+                    </li>
+                    <li>
+                        Built a large scale multi-client microservice
+                        architecture based web application using React, C#, and
+                        T-SQL
+                    </li>
+                    <li>
+                        Iteratively designed products in an agile environment
+                        working with the project management and design teams, to
+                        continuously improve the look and feel of the
+                        application based on client feedback
+                    </li>
+                </ul>
+            </ExperienceJob>
+            <ExperienceJob
+                startDate="09/2021"
+                endDate="02/2022"
+                companyUrl="https://coop.org"
+                companyName="Co-op Financial Services"
+                title="Application Developer I (Contract)"
+            >
+                <ul class="list-disc">
+                    <li>
+                        Supported development and maintenance of REST APIs for
+                        internal and external consumption
+                    </li>
+                    <li>
+                        Supported external development of a product that manages
+                        cardholder transaction disputes
+                    </li>
+                    <li>
+                        Built internal tools for managing IP whitelisting and
+                        client access to restricted applications
+                    </li>
+                </ul>
+            </ExperienceJob>
+        </ul>
+    </main>
+</BaseLayout>

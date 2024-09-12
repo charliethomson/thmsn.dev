@@ -48,8 +48,12 @@ const { startDate, endDate, companyUrl, companyName, title } = Astro.props;
 
 <li class="experience-item" data-start-date={startDate} data-end-date={endDate}>
     <div id="duration-container">
-        <h3 class="text-xl font-bold text-slate-500">
-            <a href={companyUrl} target="_blank"> {companyName} </a>
+        <h3
+            class="text-xl font-bold text-cyan-700 dark:text-cyan-300 dark:hover:text-cyan-100 transition-all w-fit"
+        >
+            <a href={companyUrl} target="_blank" class="w-min">
+                {companyName}
+            </a>
         </h3>
         <div
             class="flex sm:items-center sm:gap-2 flex-col sm:flex-row py-4 sm:py-0"
@@ -57,21 +61,25 @@ const { startDate, endDate, companyUrl, companyName, title } = Astro.props;
             <span class="text-lg">{title}</span>
             <span
                 id="separator"
-                class="flex-1 h-1 rounded-full bg-slate-300 opacity-40"></span>
+                class="flex-1 h-1 rounded-full bg-slate-300 opacity-40 dark:bg-slate-600"
+            ></span>
             <span id="time"></span>
         </div>
     </div>
     <div id="information" class="pb-4 group flex flex-col items-center gap-1">
-        <div
-            id="information-container"
-            class="max-h-full sm:max-h-[3em] overflow-hidden group-hover:max-h-[200px] transition-all pl-4 w-full"
-        >
+        <div id="information-container" class="overflow-hidden w-full">
             <slot />
         </div>
-        <div
-            class="hidden sm:block group-hover:hidden text-slate-700 font-light text-sm italic"
-        >
-            hover to see more
-        </div>
+        <!-- <div
+        id="information-container"
+        class="max-h-full sm:max-h-[3em] overflow-hidden group-hover:max-h-[200px] transition-all pl-4 w-full"
+    >
+        <slot />
+    </div>
+    <div
+        class="hidden sm:block group-hover:hidden text-slate-700 dark:text-slate-500 font-light text-sm italic"
+    >
+        hover to see more
+    </div> -->
     </div>
 </li>

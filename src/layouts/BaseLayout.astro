@@ -9,22 +9,22 @@ import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
         <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
     <body
-        class={"xs:px-4 xs:py-4 flex w-screen items-center bg-slate-800 dark:bg-slate-900 justify-center " +
+        class={"xs:px-4 xs:py-4 flex w-screen items-center bg-neutral-800 dark:bg-neutral-900 justify-center " +
             "overflow-hidden px-2 py-2 pb-8 transition-all sm:px-16 sm:py-16 md:px-24 md:py-16 lg:px-32 lg:py-32"}
     >
         <article
             id="root"
-            class={"h-full max-w-7xl flex-1 rounded-3xl bg-slate-200 dark:bg-slate-800 p-8 md:p-16 " +
-                "shadow-2xl shadow-slate-900 dark:shadow-slate-950 text-slate-800 dark:text-slate-300"}
+            class={"h-full max-w-7xl flex-1 rounded-3xl bg-neutral-200 dark:bg-neutral-800 p-8 md:p-16 " +
+                "shadow-2xl shadow-neutral-900 dark:shadow-neutral-950 text-neutral-800 dark:text-neutral-300"}
         >
             <slot />
         </article>
         <footer class="absolute bottom-1 flex gap-8">
             <span
-                class="lowercase text-slate-400 dark:text-slate-700 flex items-center gap-1 tracking-wide"
+                class="lowercase text-neutral-400 dark:text-neutral-700 flex items-center gap-1 tracking-wide"
             >
                 made with
-                <span class="before:content-['💙'] dark:before:content-['🖤']"
+                <span class="before:content-['❤️'] dark:before:content-['🖤']"
                 ></span>
                 in va
             </span>

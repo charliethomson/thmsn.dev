@@ -1,4 +1,5 @@
 ---
+import SocialButton from "../components/SocialButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Icon } from "astro-icon/components";
 ---
@@ -14,14 +15,14 @@ import { Icon } from "astro-icon/components";
                     <a
                         href="https://velera.com"
                         target="_blank"
-                        class="font-medium text-cyan-700 dark:text-cyan-300 dark:hover:text-cyan-100 transition-all"
+                        class="font-medium text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
                     >
                         Velera</a
                     >, primarily writing C# and React, currently focused on
                     DevOps.&nbsp;
                     <a
                         href="/experience"
-                        class="font-medium text-cyan-700 dark:text-cyan-300 dark:hover:text-cyan-100 transition-all"
+                        class="font-medium text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
                     >
                         Read more about my experience
                     </a>
@@ -40,44 +41,42 @@ import { Icon } from "astro-icon/components";
                 id="links"
                 class="absolute left-0 bottom-0 flex gap-4 w-full"
             >
-                <a
-                    target="_blank"
+                <SocialButton
+                    alt="github"
+                    human="github"
                     href="https://github.com/charliethomson"
-                    class="flex size-12 items-center justify-center rounded-xl text-2xl text-slate-400 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600 dark:hover:text-slate-200 dark:hover:bg-slate-700 dark:hover:bg-opacity-40"
-                >
-                    <Icon name="mingcute:github-fill" class="not-sr-only" />
-                    <span class="sr-only">github</span>
-                </a>
-                <a
-                    target="_blank"
+                    icon="github-fill"
+                />
+                <SocialButton
+                    alt="bluesky"
+                    human="bluesky"
+                    href="https://bsky.thmsn.dev"
+                    icon="bluesky-social-fill"
+                />
+                <SocialButton
+                    alt="twitter"
+                    human="twitter"
                     href="https://twitter.com/poetayetoe"
-                    class="flex size-12 items-center justify-center rounded-xl text-2xl text-slate-400 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600 dark:hover:text-slate-200 dark:hover:bg-slate-700 dark:hover:bg-opacity-40"
-                >
-                    <Icon name="mingcute:twitter-fill" class="not-sr-only" />
-                    <span class="sr-only">twitter</span>
-                </a>
-                <a
-                    target="_blank"
+                    icon="twitter-fill"
+                />
+                <SocialButton
+                    alt="linkedin"
+                    human="linkedin"
                     href="https://www.linkedin.com/in/charliecthomson/"
-                    class="flex size-12 items-center justify-center rounded-xl text-2xl text-slate-400 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600 dark:hover:text-slate-200 dark:hover:bg-slate-700 dark:hover:bg-opacity-40"
-                >
-                    <Icon name="mingcute:linkedin-fill" class="not-sr-only" />
-                    <span class="sr-only">linkedin</span>
-                </a>
-                <a
-                    target="_blank"
+                    icon="linkedin-fill"
+                />
+                <SocialButton
+                    alt="mail"
+                    human="mail"
                     href="mailto:charlie@thmsn.dev"
-                    class="flex size-12 items-center justify-center rounded-xl text-2xl text-slate-400 transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600 dark:hover:text-slate-200 dark:hover:bg-slate-700 dark:hover:bg-opacity-40"
-                >
-                    <Icon name="mingcute:mail-fill" class="not-sr-only" />
-                    <span class="sr-only">mail</span>
-                </a>
+                    icon="mail-fill"
+                />
 
                 <div
                     id="btn-theme"
                     role="button"
-                    class={"absolute right-0 cursor-pointer size-12 items-center justify-center rounded-xl text-2xl text-slate-400 " +
-                        "transition-all hover:bg-slate-300 hover:bg-opacity-40 hover:text-slate-600 dark:hover:text-slate-200 dark:hover:bg-slate-700 dark:hover:bg-opacity-40 " +
+                    class={"absolute right-0 cursor-pointer size-12 items-center justify-center rounded-xl text-2xl text-neutral-400 " +
+                        "transition-all hover:bg-neutral-300 hover:bg-opacity-40 hover:text-neutral-600 dark:hover:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:bg-opacity-40 " +
                         "hidden sm:flex"}
                 >
                     <Icon

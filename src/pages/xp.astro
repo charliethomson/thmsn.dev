@@ -1,0 +1,196 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Link from "../components/Link.astro";
+import { Icon } from "astro-icon/components";
+
+const experiences = [
+  {
+    period: "09/2024 - present",
+    company: "Velera",
+    companyUrl: "https://velera.com",
+    role: "Software Engineer III",
+    highlights: [
+      {
+        text: "Orchestrated migration tooling between Azure DevOps organizations, automating repository, pipeline, and configuration transfers",
+        links: [
+          {
+            text: "Azure DevOps",
+            url: "https://azure.microsoft.com/en-us/products/devops/",
+          },
+        ],
+      },
+      {
+        text: "Architected standardized CI/CD pipelines supporting multiple languages and frameworks, with integrated security scanning via Snyk, quality analysis through SonarQube, and strict adherence to PCI-DSS standards",
+        links: [
+          { text: "Snyk", url: "https://snyk.io/" },
+          {
+            text: "SonarQube",
+            url: "https://www.sonarsource.com/products/sonarqube/",
+          },
+          {
+            text: "PCI-DSS",
+            url: "https://www.pcisecuritystandards.org/standards/pci-dss/",
+          },
+        ],
+      },
+      {
+        text: "Established DevOps best practices and automation strategies, reducing deployment times and improving code quality across the organization",
+        links: [],
+      },
+      {
+        text: "Maintained close cross-team collaboration with release engineering and platform engineering teams to align DevOps strategies and drive organizational improvements",
+        links: [],
+      },
+    ],
+  },
+  {
+    period: "05/2023 - 09/2024",
+    company: "Co-op Solutions",
+    companyUrl: "https://coop.org",
+    role: "Developer II",
+    highlights: [
+      {
+        text: "Engineered CI/CD automation for Azure Databricks, Azure Data Factory, and JAMS scheduler",
+        links: [
+          {
+            text: "Azure Databricks",
+            url: "https://azure.microsoft.com/en-us/products/databricks/",
+          },
+          {
+            text: "Azure Data Factory",
+            url: "https://azure.microsoft.com/en-us/products/data-factory/",
+          },
+          { text: "JAMS", url: "https://support.jamsscheduler.com/hc/en-us" },
+        ],
+      },
+      {
+        text: "Led critical infrastructure migration from App Service Environment v2 to v3",
+        links: [
+          {
+            text: "ASE migration",
+            url: "https://azure.microsoft.com/en-us/updates/app-service-environment-v1-and-v2-retirement-announcement/",
+          },
+        ],
+      },
+      {
+        text: "Designed and shipped an internal application platform using React, Redux, C#, and T-SQL on Azure infrastructure",
+        links: [
+          { text: "React", url: "https://react.dev/" },
+          { text: "Redux", url: "https://redux.js.org/" },
+          { text: "C#", url: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+          { text: "T-SQL", url: "https://learn.microsoft.com/en-us/sql/t-sql/language-reference" },
+          { text: "Azure", url: "https://azure.microsoft.com/" },
+        ],
+      },
+    ],
+  },
+  {
+    period: "02/2022 - 05/2023",
+    company: "Co-op Financial Services",
+    companyUrl: "https://coop.org",
+    role: "Application Developer I",
+    highlights: [
+      {
+        text: "Shipped a multi-vendor customer support platform for credit union cardholder management",
+        links: [],
+      },
+      {
+        text: "Collaborated with design team using Figma to build modern UI following established design systems",
+        links: [
+          { text: "Figma", url: "https://www.figma.com/" },
+        ],
+      },
+      {
+        text: "Developed large-scale microservice architecture with React, C#, and T-SQL",
+        links: [
+          { text: "React", url: "https://react.dev/" },
+          { text: "C#", url: "https://learn.microsoft.com/en-us/dotnet/csharp/" },
+          { text: "T-SQL", url: "https://learn.microsoft.com/en-us/sql/t-sql/language-reference" },
+        ],
+      },
+      {
+        text: "Practiced agile methodology, iterating on client feedback to refine product experience",
+        links: [],
+      },
+    ],
+  },
+  {
+    period: "09/2021 - 02/2022",
+    company: "Co-op Financial Services",
+    companyUrl: "https://coop.org",
+    role: "Application Developer I (Contract)",
+    highlights: [
+      {
+        text: "Maintained REST APIs for internal and external partners",
+        links: [],
+      },
+      {
+        text: "Contributed to cardholder dispute management product development",
+        links: [],
+      },
+      {
+        text: "Created internal tooling for IP whitelisting and access control",
+        links: [],
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout>
+  <h1 slot="header-title" class="text-3xl font-semibold">Work History</h1>
+  <main class="flex flex-col gap-8 px-2">
+    {
+      experiences.map((exp) => (
+        <article class="flex flex-col gap-3 pb-6 border-b border-neutral-300 dark:border-neutral-700 last:border-0">
+          <header class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+            <div class="flex flex-col">
+              <h2 class="text-xl font-bold">
+                <Link target="_blank" to={exp.companyUrl}>
+                  {exp.company}
+                </Link>
+              </h2>
+              <p class="text-lg text-neutral-700 dark:text-neutral-400">
+                {exp.role}
+              </p>
+            </div>
+            <time class="text-sm text-neutral-500 dark:text-neutral-500 font-light shrink-0">
+              {exp.period}
+            </time>
+          </header>
+
+          <ul class="flex flex-col gap-2 text-base">
+            {exp.highlights.map((highlight) => (
+              <li class="flex gap-2 items-start">
+                <Icon
+                  name="mingcute:right-fill"
+                  class="size-5 shrink-0 text-rose-700 dark:text-rose-300 mt-0.5"
+                />
+                <span>
+                  {highlight.text
+                    .split(
+                      new RegExp(
+                        `(${highlight.links.map((l) => l.text).join("|")})`,
+                        "g",
+                      ),
+                    )
+                    .map((part) => {
+                      const link = highlight.links.find((l) => l.text === part);
+                      if (link) {
+                        return (
+                          <Link target="_blank" to={link.url}>
+                            {link.text}
+                          </Link>
+                        );
+                      }
+                      return part;
+                    })}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))
+    }
+  </main>
+</BaseLayout>

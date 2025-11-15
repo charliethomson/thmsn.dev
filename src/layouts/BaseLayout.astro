@@ -2,70 +2,130 @@
 import "@fontsource-variable/nunito";
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import { Icon } from "astro-icon/components";
+import IconButton from "../components/IconButton.astro";
 ---
 
 <html lang="en">
-    <head>
-        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    </head>
-    <body
-        class={"xs:px-4 xs:py-4 flex w-screen items-center bg-neutral-800 dark:bg-neutral-900 justify-center " +
-            "overflow-hidden px-2 py-2 pb-8 transition-all sm:px-16 sm:py-16 md:px-24 md:py-16 lg:px-32 lg:py-32"}
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body
+    class={"flex w-screen items-center bg-neutral-800 dark:bg-neutral-900 justify-center " +
+      "overflow-hidden px-4 py-4 pb-8 transition-all"}
+  >
+    <main
+      id="root"
+      class={"h-full max-w-7xl flex-1 bg-neutral-200 dark:bg-neutral-800 p-4 flex flex-col " +
+        "shadow-2xl shadow-neutral-900 dark:shadow-neutral-950 text-neutral-800 dark:text-neutral-300"}
     >
-        <article
-            id="root"
-            class={"h-full max-w-7xl flex-1 rounded-3xl bg-neutral-200 dark:bg-neutral-800 p-8 md:p-16 " +
-                "shadow-2xl shadow-neutral-900 dark:shadow-neutral-950 text-neutral-800 dark:text-neutral-300"}
+      <header
+        class="flex gap-4 items-center w-full border-b border-neutral-300 dark:border-neutral-700 pb-2 mb-6"
+      >
+        {
+          Astro.url.pathname !== "/" ? (
+            <IconButton
+              As="a"
+              asProps={{ href: "/" }}
+              alt="link:home"
+              human="Return to Home"
+              icon="left-line"
+            />
+          ) : null
+        }
+        <section
+          class="flex flex-col sm:flex-row justify-between items-center flex-1"
         >
-            <slot />
-        </article>
-        <footer class="absolute bottom-1 flex gap-8">
-            <span
-                class="lowercase text-neutral-400 dark:text-neutral-700 flex items-center gap-1 tracking-wide"
-            >
-                made with
-                <span class="before:content-['❤️'] dark:before:content-['🖤']"
-                ></span>
-                in va
-            </span>
-        </footer>
-    </body>
+          <slot name="header-title" />
+          <slot name="header-extra" />
+        </section>
+      </header>
+
+      <article class="flex-1 overflow-auto relative" id="content-wrapper">
+        <slot />
+      </article>
+
+      <footer
+        class="flex gap-4 items-center mt-6 pt-4 border-t border-neutral-300 dark:border-neutral-700 relative h-10"
+      >
+        <slot name="social-links" />
+        <span
+          class="lowercase text-neutral-400 dark:text-neutral-600 flex items-center gap-1 tracking-wide text-sm"
+        >
+          made with
+          <span class="before:content-['❤️'] dark:before:content-['🖤']"></span>
+          in va
+        </span>
+        <div
+          id="btn-theme"
+          role="button"
+          class={"absolute right-0 cursor-pointer size-10 block items-center justify-center text-xl text-neutral-400 " +
+            "transition-all hover:bg-neutral-300 hover:bg-opacity-40 hover:text-neutral-600 dark:hover:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:bg-opacity-40 " +
+            "flex"}
+        >
+          <Icon
+            name="mingcute:sun-fill"
+            class="not-sr-only absolute opacity-0 dark:opacity-100 transition-all"
+          />
+          <Icon
+            name="mingcute:moon-fill"
+            class="not-sr-only absolute opacity-1 dark:opacity-0 transition-all"
+          />
+
+          <span class="sr-only">Toggle theme</span>
+        </div>
+      </footer>
+    </main>
+  </body>
 </html>
 
+<script>
+  import { toggleTheme } from "../scripts/theme.mjs";
+
+  const btn = document.querySelector<HTMLDivElement>("div#btn-theme");
+  if (btn) {
+    btn.onclick = toggleTheme;
+  }
+</script>
+
 <style is:global>
-    body {
-        background-image: url("https://raw.githubusercontent.com/charliethomson/thmsn.dev/refs/heads/main/public/always-grey.webp");
-        background-size: 24px;
-        background-repeat: repeat;
-        font-family: "Nunito Variable", sans-serif;
-        height: 100dvh;
-    }
+  body {
+    background-image: url("https://raw.githubusercontent.com/charliethomson/thmsn.dev/refs/heads/main/public/always-grey.webp");
+    background-size: 24px;
+    background-repeat: repeat;
+    font-family: "Nunito Variable", sans-serif;
+    height: 100dvh;
+  }
 
-    #root {
-        position: relative;
-    }
+  #root {
+    position: relative;
+  }
 
-    #root > * {
-        position: relative;
-        z-index: 10;
-    }
+  #root > * {
+    position: relative;
+    z-index: 10;
+  }
 
-    #root::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        content: "";
-        border-radius: 1.5rem;
-        background-image: url("https://raw.githubusercontent.com/charliethomson/thmsn.dev/refs/heads/main/public/asfalt-dark.webp");
-        background-size: 128px;
-        background-repeat: repeat;
-        z-index: 1;
-    }
+  #root::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: "";
+    border-radius: 1.5rem;
+    background-image: url("https://raw.githubusercontent.com/charliethomson/thmsn.dev/refs/heads/main/public/asfalt-dark.webp");
+    background-size: 128px;
+    background-repeat: repeat;
+    z-index: 1;
+  }
 
-    .dark #root::before {
-        background-image: url("https://raw.githubusercontent.com/charliethomson/thmsn.dev/refs/heads/main/public/asfalt-light.webp");
-        filter: opacity(0.6) blur(0.1px);
-    }
+  .dark #root::before {
+    background-image: url("https://raw.githubusercontent.com/charliethomson/thmsn.dev/refs/heads/main/public/asfalt-light.webp");
+    filter: opacity(0.6) blur(0.1px);
+  }
+
+  #content-wrapper {
+    border-radius: 8px;
+  }
 </style>

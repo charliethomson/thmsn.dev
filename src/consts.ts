@@ -1,2 +1,2 @@
-export const SITE_TITLE = "ツ - Charlie Thomson";
-export const SITE_DESCRIPTION = `Charlie Thomson's blog`;
+export const SITE_TITLE = "Charlie Thomson";
+export const SITE_DESCRIPTION = `${SITE_TITLE}'s blog`;

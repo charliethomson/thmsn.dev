@@ -3,74 +3,73 @@ const { startDate, endDate, companyUrl, companyName, title } = Astro.props;
 ---
 
 <script>
-    import { DateTime } from "luxon";
+  import { DateTime } from "luxon";
 
-    function getDuration(
-        startDateRaw: string,
-        endDateRaw: string | "present",
-    ): string {
-        const startDate = DateTime.fromFormat(startDateRaw, "MM/yyyy");
-        const endDate =
-            endDateRaw === "present"
-                ? DateTime.now()
-                : DateTime.fromFormat(endDateRaw, "MM/yyyy");
+  function getDuration(
+    startDateRaw: string,
+    endDateRaw: string | "present",
+  ): string {
+    const startDate = DateTime.fromFormat(startDateRaw, "MM/yyyy");
+    const endDate =
+      endDateRaw === "present"
+        ? DateTime.now()
+        : DateTime.fromFormat(endDateRaw, "MM/yyyy");
 
-        const dt = endDate.diff(startDate).shiftToAll();
-        const content = [];
-        const { years, months } = dt;
-        if (years > 0) content.push(`${years} year${years > 1 ? "s" : ""}`);
-        if (months > 0) content.push(`${months} month${months > 1 ? "s" : ""}`);
+    const dt = endDate.diff(startDate).shiftToAll();
+    const content = [];
+    const { years, months } = dt;
+    if (years > 0) content.push(`${years} year${years > 1 ? "s" : ""}`);
+    if (months > 0) content.push(`${months} month${months > 1 ? "s" : ""}`);
 
-        return content.join(", ");
-    }
+    return content.join(", ");
+  }
 
-    function onElementLocated(el: HTMLLIElement) {
-        const startDateRaw = el.dataset.startDate;
-        const endDateRaw = el.dataset.endDate;
-        if (!startDateRaw || !endDateRaw) return;
+  function onElementLocated(el: HTMLLIElement) {
+    const startDateRaw = el.dataset.startDate;
+    const endDateRaw = el.dataset.endDate;
+    if (!startDateRaw || !endDateRaw) return;
 
-        const duration = getDuration(startDateRaw, endDateRaw);
-        const durationContainer = el.querySelector<HTMLDivElement>(
-            "div#duration-container",
-        );
-        if (!durationContainer) throw new Error("Unreachable");
-        durationContainer.title = duration;
+    const duration = getDuration(startDateRaw, endDateRaw);
+    const durationContainer = el.querySelector<HTMLDivElement>(
+      "div#duration-container",
+    );
+    if (!durationContainer) throw new Error("Unreachable");
+    durationContainer.title = duration;
 
-        const timeElement = el.querySelector<HTMLSpanElement>("#time");
-        if (!timeElement) throw new Error("Unreachable");
-        timeElement.textContent = `${startDateRaw} - ${endDateRaw}`;
-    }
+    const timeElement = el.querySelector<HTMLSpanElement>("#time");
+    if (!timeElement) throw new Error("Unreachable");
+    timeElement.textContent = `${startDateRaw} - ${endDateRaw}`;
+  }
 
-    const items =
-        document.querySelectorAll<HTMLLIElement>("li.experience-item");
-    for (const item of items) onElementLocated(item);
+  const items = document.querySelectorAll<HTMLLIElement>("li.experience-item");
+  for (const item of items) onElementLocated(item);
 </script>
 
 <li class="experience-item" data-start-date={startDate} data-end-date={endDate}>
-    <div id="duration-container">
-        <h3
-            class="text-xl font-bold text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all w-fit"
-        >
-            <a href={companyUrl} target="_blank" class="w-min">
-                {companyName}
-            </a>
-        </h3>
-        <div
-            class="flex sm:items-center sm:gap-2 flex-col sm:flex-row py-4 sm:py-0"
-        >
-            <span class="text-lg">{title}</span>
-            <span
-                id="separator"
-                class="flex-1 h-1 rounded-full bg-neutral-300 opacity-40 dark:bg-neutral-600"
-            ></span>
-            <span id="time"></span>
-        </div>
+  <div id="duration-container">
+    <h3
+      class="text-xl font-bold text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all w-fit"
+    >
+      <a href={companyUrl} target="_blank" class="w-min">
+        {companyName}
+      </a>
+    </h3>
+    <div
+      class="flex sm:items-center sm:gap-2 flex-col sm:flex-row py-4 sm:py-0"
+    >
+      <span class="text-lg">{title}</span>
+      <span
+        id="separator"
+        class="flex-1 h-1 rounded-full bg-neutral-300 opacity-40 dark:bg-neutral-600"
+      ></span>
+      <span id="time"></span>
     </div>
-    <div id="information" class="pb-4 group flex flex-col items-center gap-1">
-        <div id="information-container" class="overflow-hidden w-full">
-            <slot />
-        </div>
-        <!-- <div
+  </div>
+  <div id="information" class="pb-4 group flex flex-col items-center gap-1">
+    <div id="information-container" class="overflow-hidden w-full">
+      <slot />
+    </div>
+    <!-- <div
         id="information-container"
         class="max-h-full sm:max-h-[3em] overflow-hidden group-hover:max-h-[200px] transition-all pl-4 w-full"
     >
@@ -81,5 +80,5 @@ const { startDate, endDate, companyUrl, companyName, title } = Astro.props;
     >
         hover to see more
     </div> -->
-    </div>
+  </div>
 </li>

@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = Exclude<HTMLAttributes<"a">, "href"> & {
+  to: string;
+};
+let { to, ...props } = Astro.props;
+---
+
+<a
+  href={to}
+  {...props}
+  class="font-medium text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all w-fit inline-block"
+>
+  <slot />
+</a>

@@ -1,20 +1,230 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import SocialButton from "../../components/SocialButton.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostTags from "../../components/PostTags.astro";
+import IconButton from "../../components/IconButton.astro";
+
+export const prerender = true;
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
 }
-type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
+type Props = {
+  post: CollectionEntry<"blog">;
+};
+
+const { post } = Astro.props;
 const { Content } = await post.render();
+const pubDateLong = post.data.pubDate.toLocaleDateString("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+const pubDateShort = post.data.pubDate.toLocaleDateString("en-US", {
+  month: "short",
+  year: "2-digit",
+});
+
+const currentUrl = Astro.url.href;
+const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(post.data.title)}`;
+const blueskyShareUrl = `https://bsky.app/intent/compose?text=${encodeURIComponent(post.data.title + " " + currentUrl)}`;
 ---
 
-<BlogPost {...post.data}>
-	<Content />
-</BlogPost>
+<BaseLayout>
+  <span slot="header-title" class="flex gap-2 align-bottom">
+    <h1 class="text-3xl font-semibold line-clamp-1" title={post.data.title}>
+      {post.data.title}
+    </h1>
+    <span
+      class="text-sm font-extralight line-clamp-1 mt-auto"
+      title={post.data.description}
+    >
+      {post.data.description}
+    </span>
+  </span>
+
+  <section slot="header-extra" class="flex gap-4">
+    <time
+      class="text-sm font-extralight text-neutral-500 line-clamp-1"
+      title={pubDateLong}
+      datetime={post.data.pubDate.toISOString()}
+    >
+      {pubDateShort}
+    </time>
+    <PostTags tags={post.data.tags} />
+  </section>
+  <main class="flex flex-col gap-5">
+    <article class="prose prose-neutral dark:prose-invert max-w-full">
+      <Content />
+    </article>
+  </main>
+  <section slot="social-links" class="flex gap-3">
+    <SocialButton
+      alt="share:bsky"
+      human="Share on Bluesky"
+      href={blueskyShareUrl}
+      icon="bluesky-social-fill"
+    />
+    <SocialButton
+      alt="share:twitter"
+      human="Share on Twitter"
+      href={twitterShareUrl}
+      icon="twitter-fill"
+    />
+    <IconButton
+      As="button"
+      asProps={{
+        id: "btn-share-copy-link",
+        "data-sharelink": currentUrl,
+      }}
+      icon="link-line"
+      alt="share:copy-link"
+      human="Copy Link"
+    />
+  </section>
+</BaseLayout>
+
+<style is:global>
+  /* Blog post content styling */
+  .prose a {
+    @apply text-rose-700 dark:text-rose-300 transition-all;
+  }
+
+  .prose a:hover {
+    @apply dark:text-rose-100;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    @apply font-semibold mt-4 mb-2;
+  }
+
+  .prose h1 {
+    @apply text-2xl;
+  }
+
+  .prose h2 {
+    @apply text-xl;
+  }
+
+  .prose h3 {
+    @apply text-lg;
+  }
+
+  /* Inline code styling */
+  .prose code {
+    @apply px-1.5 py-0.5 text-sm;
+    @apply text-rose-700 dark:text-rose-300 bg-neutral-300 dark:bg-neutral-700 mx-1 italic;
+  }
+
+  .prose code::before,
+  .prose code::after {
+    content: none;
+  }
+
+  /* Code block container */
+  .prose pre {
+    @apply rounded-lg p-4;
+    overflow-x: auto;
+  }
+
+  /* Remove extra newline at end of code blocks */
+  .prose pre code {
+    display: block;
+  }
+
+  .prose code {
+    counter-reset: step;
+    counter-increment: step 0;
+  }
+
+  .prose code .line::before {
+    content: counter(step);
+    counter-increment: step;
+    width: 3ch;
+    margin-right: 1.5rem;
+    display: inline-block;
+    text-align: right;
+    color: rgba(115, 138, 148, 0.4);
+  }
+
+  .prose pre code .line:last-child:empty {
+    display: none;
+  }
+
+  /* Code inside pre blocks - override inline code styles */
+  .prose pre code {
+    @apply p-0;
+    background-color: transparent !important;
+    color: inherit !important;
+  }
+
+  .prose pre code .line {
+    display: inline-block;
+    min-height: 1rem;
+  }
+
+  /* Shiki theme switching - One Light / One Dark Pro */
+  html:not(.dark) .prose pre {
+    background-color: var(--shiki-light-bg);
+    color: var(--shiki-light);
+  }
+
+  html.dark .prose pre {
+    background-color: var(--shiki-dark-bg);
+    color: var(--shiki-dark);
+  }
+
+  /* Apply syntax highlighting colors */
+  html:not(.dark) .prose pre .line span {
+    color: var(--shiki-light);
+  }
+
+  html.dark .prose pre .line span {
+    color: var(--shiki-dark);
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply list-inside;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-rose-700 dark:border-rose-300 pl-4 italic;
+  }
+
+  .prose strong {
+    @apply font-semibold;
+  }
+
+  .prose img {
+    @apply rounded-lg;
+  }
+
+  /* Additional paragraph spacing */
+  .prose p {
+    @apply my-3;
+  }
+</style>
+
+<script>
+  const btn = document.querySelector<HTMLButtonElement>(
+    "button#btn-share-copy-link",
+  );
+  if (btn) {
+    btn.onclick = async () => {
+      await navigator.clipboard.writeText(btn.dataset["sharelink"] ?? "");
+    };
+  }
+</script>

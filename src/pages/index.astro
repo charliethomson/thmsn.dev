@@ -1,105 +1,117 @@
 ---
+import Link from "../components/Link.astro";
+import PostTags from "../components/PostTags.astro";
 import SocialButton from "../components/SocialButton.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+
+export const prerender = true; // If using Cloudflare adapter
+
+const posts = await getCollection("blog");
+
+// Sort by date (newest first)
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
 ---
 
 <BaseLayout>
-    <main class="relative w-full h-full">
-        <article class="flex flex-col lg:flex-row gap-16 justify-between">
-            <section class="lg:max-w-[50%] flex flex-col gap-4 h-fit">
-                <h1 class={"text-4xl font-semibold"}>Charlie Thomson</h1>
-                <p class="text-lg">I build things</p>
-                <p class="text-lg">
-                    I work for&nbsp;
-                    <a
-                        href="https://velera.com"
-                        target="_blank"
-                        class="font-medium text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                    >
-                        Velera</a
-                    >, primarily writing C# and React, currently focused on
-                    DevOps.&nbsp;
-                    <a
-                        href="/experience"
-                        class="font-medium text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                    >
-                        Read more about my experience
-                    </a>
-                </p>
-                <p class="text-lg">
-                    I&apos;m working on some side projects as well 😁
-                </p>
-            </section>
-            <section class="lg:max-w-[45%] flex flex-col gap-8">
-                <h3 class="lg:text-right text-4xl font-extralight">Things</h3>
-                <span class="w-full lg:text-right text-lg font-extralight">
-                    hmmm... there doesn&apos;t seem to be anything here yet?
-                </span>
-            </section>
-            <section
-                id="links"
-                class="absolute left-0 bottom-0 flex gap-4 w-full"
-            >
-                <SocialButton
-                    alt="github"
-                    human="github"
-                    href="https://github.com/charliethomson"
-                    icon="github-fill"
-                />
-                <SocialButton
-                    alt="bluesky"
-                    human="bluesky"
-                    href="https://bsky.thmsn.dev"
-                    icon="bluesky-social-fill"
-                />
-                <SocialButton
-                    alt="twitter"
-                    human="twitter"
-                    href="https://twitter.com/poetayetoe"
-                    icon="twitter-fill"
-                />
-                <SocialButton
-                    alt="linkedin"
-                    human="linkedin"
-                    href="https://www.linkedin.com/in/charliecthomson/"
-                    icon="linkedin-fill"
-                />
-                <SocialButton
-                    alt="mail"
-                    human="mail"
-                    href="mailto:charlie@thmsn.dev"
-                    icon="mail-fill"
-                />
+  <h1 slot="header-title" class={"text-3xl font-semibold"}>Charlie Thomson</h1>
 
-                <div
-                    id="btn-theme"
-                    role="button"
-                    class={"absolute right-0 cursor-pointer size-12 items-center justify-center rounded-xl text-2xl text-neutral-400 " +
-                        "transition-all hover:bg-neutral-300 hover:bg-opacity-40 hover:text-neutral-600 dark:hover:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:bg-opacity-40 " +
-                        "hidden sm:flex"}
-                >
-                    <Icon
-                        name="mingcute:sun-fill"
-                        class="not-sr-only absolute opacity-0 dark:opacity-100 transition-all"
-                    />
-                    <Icon
-                        name="mingcute:moon-fill"
-                        class="not-sr-only absolute opacity-1 dark:opacity-0 transition-all"
-                    />
+  <main class="w-full h-full">
+    <article class="flex flex-col lg:flex-row gap-12 justify-between">
+      <section class="flex flex-col gap-3 h-fit">
+        <p class="text-base">I build things</p>
 
-                    <span class="sr-only">Toggle theme</span>
-                </div>
-            </section>
-        </article>
-    </main>
+
+        <p class="text-base">
+            When I build things for myself, I usually use <u>rust</u>, <u>astro</u>, <u>react</u>, <u>mariadb</u>, <u>swift</u>, <u>c</u>, and more often than I'd like, <u>bash</u>
+        </p>
+
+        <p class="text-base">
+            When I build things for
+            <Link to="https://velera.com" target="_blank">Velera</Link>,
+            I usually use <u>C#</u>, <u>react</u>, <u>typescript</u>, and significantly more <u>powershell</u> than I'd like to admit
+        </p>
+
+        <p>
+            Read more about my
+            <Link to="/xp">experience</Link>
+            and
+            <Link to="/list">skills</Link>
+        </p>
+      </section>
+      <section class="lg:max-w-[30%] flex flex-col gap-5 min-w-0">
+        {
+          !sortedPosts?.length ? (
+            <span class="w-full lg:text-right text-sm font-extralight">
+              nothing here yet
+            </span>
+          ) : (
+            <ul class="w-full flex flex-col gap-2 -mx-3">
+              {sortedPosts.map((post) => (
+                <li>
+                  <a
+                    href={`/blog/${post.slug}`}
+                    class="flex flex-col gap-2 p-3 transition-all hover:bg-neutral-300 hover:bg-opacity-40 dark:hover:bg-neutral-700 dark:hover:bg-opacity-40"
+                  >
+                    <div class="flex items-baseline justify-between gap-3">
+                      <span class="text-base font-medium leading-tight">
+                        {post.data.title}
+                      </span>
+                      <time
+                        class="text-xs font-extralight text-neutral-500 dark:text-neutral-500 shrink-0"
+                        title={post.data.pubDate.toLocaleDateString()}
+                      >
+                        {post.data.pubDate.toLocaleDateString("en-US", {
+                          month: "short",
+                          year: "2-digit",
+                        })}
+                      </time>
+                    </div>
+                    <span class="text-xs font-light text-neutral-600 dark:text-neutral-400 leading-snug">
+                      {post.data.description}
+                    </span>
+                    <PostTags tags={post.data.tags}>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </section>
+    </article>
+  </main>
+  <section slot="social-links" id="links" class="flex gap-3">
+    <SocialButton
+      alt="github"
+      human="github"
+      href="https://github.com/charliethomson"
+      icon="github-fill"
+    />
+    <SocialButton
+      alt="bluesky"
+      human="bluesky"
+      href="https://bsky.thmsn.dev"
+      icon="bluesky-social-fill"
+    />
+    <SocialButton
+      alt="twitter"
+      human="twitter"
+      href="https://twitter.com/poetayetoe"
+      icon="twitter-fill"
+    />
+    <SocialButton
+      alt="linkedin"
+      human="linkedin"
+      href="https://www.linkedin.com/in/charliecthomson/"
+      icon="linkedin-fill"
+    />
+    <SocialButton
+      alt="mail"
+      human="mail"
+      href="mailto:charlie@thmsn.dev"
+      icon="mail-fill"
+    />
+  </section>
 </BaseLayout>
-
-<script>
-    import { toggleTheme } from "../scripts/theme.mjs";
-
-    const btn = document.querySelector<HTMLDivElement>("div#btn-theme");
-    if (btn) {
-        btn.onclick = toggleTheme;
-    }
-</script>

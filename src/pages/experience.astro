@@ -2,168 +2,151 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ExperienceJob from "../components/ExperienceJob.astro";
 import { Icon } from "astro-icon/components";
+import Link from "../components/Link.astro";
 ---
 
 <BaseLayout>
-    <main class="flex h-full flex-col gap-8">
-        <div class="flex items-center gap-4">
-            <a
-                href="/"
-                class="hidden sm:flex size-12 items-center justify-center rounded-xl text-4xl text-neutral-400 transition-all hover:bg-neutral-300 hover:bg-opacity-40 hover:text-neutral-600 dark:hover:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:bg-opacity-40"
-                title="Return to Home"
+  <h1 slot="header-title" class="text-3xl font-semibold">My&nbsp;Experience</h1>
+  <main class="flex flex-col gap-5">
+    <ul class="flex gap-3 sm:gap-1 flex-col px-2">
+      <ExperienceJob
+        startDate="09/2024"
+        endDate="present"
+        companyUrl="https://velera.com"
+        companyName="Velera"
+        title="Software Engineer III"
+      >
+        <ul class="list-disc list-inside">
+          <!-- TODO: Do something w/ this bullet i think, something w/ dev? -->
+          <!-- <li>Second in command on a team focused on DevOps</li> -->
+          <li>
+            Created and maintained scripts supporting migration between
+            <Link
+              target="_blank"
+              to="https://azure.microsoft.com/en-us/products/devops/"
             >
-                <Icon name="mingcute:left-line" class="not-sr-only" />
-                <span class="sr-only">Return to home</span>
-            </a>
-            <h1 class="text-4xl font-semibold">My&nbsp;Experience</h1>
-        </div>
-        <ul class="overflow-auto flex gap-4 sm:gap-1 flex-col px-2">
-            <ExperienceJob
-                startDate="09/2024"
-                endDate="present"
-                companyUrl="https://velera.com"
-                companyName="Velera"
-                title="Software Engineer III"
+              Azure DevOps
+            </Link> organizations
+          </li>
+          <li>
+            Built and maintained comprehensive, standardized build and release
+            pipelines incorporating automated security scanning with
+            <Link target="_blank" to="https://snyk.io/"> Snyk </Link>, code
+            quality metrics using
+            <Link
+              target="_blank"
+              to="https://www.sonarsource.com/products/sonarqube/"
             >
-                <ul class="list-disc list-inside">
-                    <!-- TODO: Do something w/ this bullet i think, something w/ dev? -->
-                    <!-- <li>Second in command on a team focused on DevOps</li> -->
-                    <li>
-                        Created and maintained scripts supporting migration
-                        between <a
-                            target="_blank"
-                            class="text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                            href="https://azure.microsoft.com/en-us/products/databricks/"
-                        >
-                            Azure DevOps
-                        </a> organizations
-                    </li>
-                    <li>
-                        Built and maintained comprehensive, standardized build
-                        and release pipelines incorporating automated security
-                        scanning with <a
-                            target="_blank"
-                            class="text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                            href="https://snyk.io/">Snyk</a
-                        >, code quality metrics using <a
-                            target="_blank"
-                            class="text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                            href="https://www.sonarsource.com/products/sonarqube/"
-                            >SonarQube</a
-                        >, supporting multiple programming languages and
-                        frameworks, while ensuring compliance with <a
-                            target="_blank"
-                            class="text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                            href="https://www.pcisecuritystandards.org/standards/pci-dss/"
-                            >industry standards, regulatory requirements</a
-                        >, and internal policies.
-                    </li>
-                </ul>
-            </ExperienceJob>
-            <ExperienceJob
-                startDate="05/2023"
-                endDate="09/2024"
-                companyUrl="https://coop.org"
-                companyName="Co-op Solutions"
-                title="Developer II"
+              SonarQube
+            </Link>, supporting multiple programming languages and frameworks,
+            while ensuring compliance with
+            <Link
+              target="_blank"
+              to="https://www.pcisecuritystandards.org/standards/pci-dss/"
             >
-                <ul class="list-disc list-inside">
-                    <!-- TODO: Do something w/ this bullet i think, something w/ dev? -->
-                    <!-- <li>Second in command on a team focused on DevOps</li> -->
-                    <li>
-                        Created and maintained build and release pipelines in
-                        Azure DevOps for <a
-                            target="_blank"
-                            class="text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                            href="https://azure.microsoft.com/en-us/products/databricks/"
-                        >
-                            Azure Databricks</a
-                        >, <a
-                            target="_blank"
-                            class="text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                            href="https://azure.microsoft.com/en-us/products/data-factory/"
-                        >
-                            Azure Data Factory</a
-                        >, and <a
-                            target="_blank"
-                            class="text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                            href="https://support.jamsscheduler.com/hc/en-us"
-                        >
-                            JAMS
-                        </a>
-                    </li>
-                    <li>
-                        <!-- major infra upgrade -->
-                        Supported major infrastructure
-                        <a
-                            target="_blank"
-                            class="text-rose-700 dark:text-rose-300 dark:hover:text-rose-100 transition-all"
-                            href="https://azure.microsoft.com/en-us/updates/app-service-environment-v1-and-v2-retirement-announcement/"
-                        >
-                            upgrade from App Service Environment v2 to v3
-                        </a>
-                    </li>
-                    <li>
-                        Led design and development of a platform for internal
-                        applications, built with React, Redux, C#, and T-SQL,
-                        running in Azure
-                    </li>
-                </ul>
-            </ExperienceJob>
-            <ExperienceJob
-                startDate="02/2022"
-                endDate="05/2023"
-                companyUrl="https://coop.org"
-                companyName="Co-op Financial Services"
-                title="Application Developer I"
-            >
-                <ul class="list-disc list-inside">
-                    <li>
-                        Worked as a full stack developer on a team that was
-                        tasked with building a multi-vendor customer support
-                        application for managing credit union cardholder
-                        accounts
-                    </li>
-                    <li>
-                        Worked with a team of designers using Figma, following
-                        standardized design system to build a sleek and modern
-                        web application
-                    </li>
-                    <li>
-                        Built a large scale multi-client microservice
-                        architecture based web application using React, C#, and
-                        T-SQL
-                    </li>
-                    <li>
-                        Iteratively designed products in an agile environment
-                        working with the project management and design teams, to
-                        continuously improve the look and feel of the
-                        application based on client feedback
-                    </li>
-                </ul>
-            </ExperienceJob>
-            <ExperienceJob
-                startDate="09/2021"
-                endDate="02/2022"
-                companyUrl="https://coop.org"
-                companyName="Co-op Financial Services"
-                title="Application Developer I (Contract)"
-            >
-                <ul class="list-disc list-inside">
-                    <li>
-                        Supported development and maintenance of REST APIs for
-                        internal and external consumption
-                    </li>
-                    <li>
-                        Supported external development of a product that manages
-                        cardholder transaction disputes
-                    </li>
-                    <li>
-                        Built internal tools for managing IP whitelisting and
-                        client access to restricted applications
-                    </li>
-                </ul>
-            </ExperienceJob>
+              industry standards, regulatory requirements
+            </Link>, and internal policies.
+          </li>
         </ul>
-    </main>
+      </ExperienceJob>
+      <ExperienceJob
+        startDate="05/2023"
+        endDate="09/2024"
+        companyUrl="https://coop.org"
+        companyName="Co-op Solutions"
+        title="Developer II"
+      >
+        <ul class="list-disc list-inside">
+          <!-- TODO: Do something w/ this bullet i think, something w/ dev? -->
+          <!-- <li>Second in command on a team focused on DevOps</li> -->
+          <li>
+            Created and maintained build and release pipelines in Azure DevOps
+            for
+            <Link
+              target="_blank"
+              to="https://azure.microsoft.com/en-us/products/databricks/"
+            >
+              Azure Databricks
+            </Link>,
+            <Link
+              target="_blank"
+              to="https://azure.microsoft.com/en-us/products/data-factory/"
+            >
+              Azure Data Factory
+            </Link>, and
+            <Link
+              target="_blank"
+              to="https://support.jamsscheduler.com/hc/en-us"
+            >
+              JAMS
+            </Link>
+          </li>
+          <li>
+            <!-- major infra upgrade -->
+            Supported major infrastructure
+            <Link
+              target="_blank"
+              to="https://azure.microsoft.com/en-us/updates/app-service-environment-v1-and-v2-retirement-announcement/"
+            >
+              upgrade from App Service Environment v2 to v3
+            </Link>
+          </li>
+          <li>
+            Led design and development of a platform for internal applications,
+            built with React, Redux, C#, and T-SQL, running in Azure
+          </li>
+        </ul>
+      </ExperienceJob>
+      <ExperienceJob
+        startDate="02/2022"
+        endDate="05/2023"
+        companyUrl="https://coop.org"
+        companyName="Co-op Financial Services"
+        title="Application Developer I"
+      >
+        <ul class="list-disc list-inside">
+          <li>
+            Worked as a full stack developer on a team that was tasked with
+            building a multi-vendor customer support application for managing
+            credit union cardholder accounts
+          </li>
+          <li>
+            Worked with a team of designers using Figma, following standardized
+            design system to build a sleek and modern web application
+          </li>
+          <li>
+            Built a large scale multi-client microservice architecture based web
+            application using React, C#, and T-SQL
+          </li>
+          <li>
+            Iteratively designed products in an agile environment working with
+            the project management and design teams, to continuously improve the
+            look and feel of the application based on client feedback
+          </li>
+        </ul>
+      </ExperienceJob>
+      <ExperienceJob
+        startDate="09/2021"
+        endDate="02/2022"
+        companyUrl="https://coop.org"
+        companyName="Co-op Financial Services"
+        title="Application Developer I (Contract)"
+      >
+        <ul class="list-disc list-inside">
+          <li>
+            Supported development and maintenance of REST APIs for internal and
+            external consumption
+          </li>
+          <li>
+            Supported external development of a product that manages cardholder
+            transaction disputes
+          </li>
+          <li>
+            Built internal tools for managing IP whitelisting and client access
+            to restricted applications
+          </li>
+        </ul>
+      </ExperienceJob>
+    </ul>
+  </main>
 </BaseLayout>

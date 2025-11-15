@@ -1,0 +1,23 @@
+---
+import { Icon } from "astro-icon/components";
+import type { HTMLAttributes, HTMLTag } from "astro/types";
+export type Props<TAs extends HTMLTag = "a"> = {
+  alt: string;
+  human?: string;
+  icon: string;
+
+  As: TAs;
+  asProps?: HTMLAttributes<TAs>;
+};
+let { alt, human, icon, As, asProps } = Astro.props;
+human ??= alt;
+---
+
+<As
+  title={human}
+  class="flex size-10 items-center justify-center text-xl text-neutral-400 transition-all hover:bg-neutral-300 hover:bg-opacity-40 hover:text-neutral-600 dark:hover:text-neutral-200 dark:hover:bg-neutral-700 dark:hover:bg-opacity-40"
+  {...asProps}
+>
+  <Icon name={`mingcute:${icon}`} class="not-sr-only" />
+  <span class="sr-only">{alt}</span>
+</As>

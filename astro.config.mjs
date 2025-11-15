@@ -11,5 +11,16 @@ export default defineConfig({
   site: "https://thmsn.dev",
   integrations: [mdx(), sitemap(), tailwind(), icon()],
   output: "server",
-  adapter: cloudflare()
+  adapter: cloudflare(),
+  markdown: {
+    shikiConfig: {
+      wrap: true,
+
+      themes: {
+        light: "one-light",
+        dark: "one-dark-pro",
+      },
+      defaultColor: false,
+    },
+  },
 });

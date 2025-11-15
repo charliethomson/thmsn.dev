@@ -1,0 +1,151 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const things: Array<{ name: string; note?: string }> = [
+  // frontend
+  { name: "react", note: "go-to for csr" },
+  { name: "astro", note: "excellent for ssg, this site uses it" },
+  { name: "redux", note: "its fine" },
+  {
+    name: "typescript",
+    note: "turing complete type system, very cool",
+  },
+  {
+    name: "javascript",
+    note: "the c to typescript's rust",
+  },
+  {
+    name: "next.js",
+    note: "its fine, worse at each thing it does than alternatives",
+  },
+  { name: "vue", note: "my first ui framework, opinionated and elegant" },
+  {
+    name: "svelte",
+    note: "compile-time is neat, some weird tradeoffs",
+  },
+  {
+    name: "tailwind",
+    note: "best css solution available, still messy sometimes",
+  },
+  {
+    name: "node.js",
+    note: "great for tooling, especially when dealing with json from powershell",
+  },
+
+  // backend
+  {
+    name: "c#",
+    note: "like if microsoft made java but better, daily driver",
+  },
+  { name: ".net", note: "c# ecosystem, vb sucks" },
+  { name: "c", note: "the js to rust's typescript" },
+  {
+    name: "rust",
+    note: "best language, borrow checker is in my brain now",
+  },
+  { name: "swift", note: "well-designed, apple did good" },
+  {
+    name: "python",
+    note: "first language, whitespace scoping is weird, dependency management kinda sucks",
+  },
+  {
+    name: "go",
+    note: "c with gc, not my favorite but marshallers are fun",
+  },
+  {
+    name: "kotlin",
+    note: "quite like it, interesting dsl stuff, some weird choices like `it`",
+  },
+
+  // databases
+  {
+    name: "t-sql",
+    note: "used extensively in azure shops",
+  },
+  { name: "mariadb", note: "mysql fork, basically the same" },
+  { name: "postgresql", note: "solid" },
+  {
+    name: "mongodb",
+    note: "would be great if data wasn't relational",
+  },
+  { name: "graphql", note: "overhyped in 2015, its fine tho" },
+
+  // cloud/infrastructure
+  {
+    name: "azure",
+    note: "keyvault + app insights + c# is a great combo",
+  },
+  {
+    name: "azure devops",
+    note: "know way too much, very powerful and very frustrating",
+  },
+  {
+    name: "databricks",
+    note: "built pipelines for it, really doesn't want to be automated",
+  },
+  { name: "azure data factory", note: "same deal as databricks" },
+
+  // devops/tools
+  { name: "git", note: "the best option" },
+  {
+    name: "snyk",
+    note: "better than fod, sast is kinda questionable in general",
+  },
+  { name: "sonarqube", note: "actively bad" },
+  {
+    name: "jams",
+    note: "powershell-only cron, absolutely incredible decision",
+  },
+  { name: "bash", note: "pretty bad" },
+  {
+    name: "powershell",
+    note: "somehow still better than bash",
+  },
+  {
+    name: "docker",
+    note: "great for dx, consider bare metal for prod",
+  },
+  {
+    name: "kubernetes",
+    note: "docker compose but way more powerful",
+  },
+  { name: "terraform", note: "iac is good, hashicorp makes good stuff" },
+  { name: "github actions", note: "clean ci/cd" },
+  {
+    name: "azure pipelines",
+    note: "inline python (whitespace) in yaml (whitespace) is a war crime, extensive experience",
+  },
+  { name: "nginx", note: "frustrating but necessary" },
+  {
+    name: "linux",
+    note: "things work how they should (unlike powershell streams)",
+  },
+  { name: "cloudflare", note: "good company, good product" },
+
+  // design
+  { name: "figma", note: "good" },
+  { name: "sketch", note: "its fine" },
+];
+---
+
+<BaseLayout>
+  <h1 slot="header-title" class="text-3xl font-semibold">The List ™️</h1>
+  <main class="px-2">
+    <p class="text-base mb-4">things i know how to use</p>
+    <ul class="list-disc list-inside text-base">
+      {
+        things.map((thing) => (
+          <li>
+            {thing.name}
+            {thing.note && (
+              <span class="text-sm font-light text-neutral-500 dark:text-neutral-500">
+                {" "}
+                ({thing.note})
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</BaseLayout>

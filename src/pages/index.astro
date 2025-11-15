@@ -72,7 +72,7 @@ const sortedPosts = posts.sort(
                     <span class="text-xs font-light text-neutral-600 dark:text-neutral-400 leading-snug">
                       {post.data.description}
                     </span>
-                    <PostTags tags={post.data.tags}>
+                    <PostTags tags={post.data.tags} />
                   </a>
                 </li>
               ))}
